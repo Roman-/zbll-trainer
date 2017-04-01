@@ -1,0 +1,16 @@
+﻿body.niceBody {
+    background-color: #f5f5f5;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+img {
+    pointer-events: none;
+}
+
+a.settings {
+    text-decoration: underline;
+    color: #004411;
+    cursor: pointer;
+}
+

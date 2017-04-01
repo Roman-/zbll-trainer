@@ -1,0 +1,105 @@
+﻿<html>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" href="styles/main.css">
+<link rel="stylesheet" type="text/css" href="styles/selection.css">
+<link rel="stylesheet" type="text/css" href="styles/timer.css">
+<head>
+<title>
+ZBLL trainer
+</title>
+</head>
+<body class="niceBody" id="bodyid" onresize="adjustInfo()">
+	<div class="practice_layout"> 
+	<table id="mainTable">
+		<tr>
+			<td id="casesBox" colspan="2">
+			<a id='selectBtn' onclick='changeMode(0)'>select cases</a><span id="selInfo"></span>
+			</td>
+		</tr>
+		<tr>
+			<td id="scramble" colspan="2">
+                        (scramble will be there)
+			</td>
+		</tr>
+		
+		<tr>
+			<td id="timer" style="height: 100%;">
+				loading, please wait...
+			</td>
+			<td id="stats">
+				<div class="resultInfoHeader">times (<a class="settings" onclick="confirmClear();">clear</a>, <a class="settings" onclick="confirmRemLast()">delete last</a>):</div>
+				<div id="times"></div>
+				<div id="resultinfo">
+				    <div id='resultInfoHeader'>case info will be displayed there</div>
+				    <div id='resultInfoContainer'></div>
+				    <div id='resultPicContainer'></div>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				<a class="settings" onclick="adjustSize('timer', 8);">increase</a>/<a class="settings" onclick="adjustSize('timer', -8);">decrease</a> timer size
+				<br><a class="settings" onclick="adjustSize('scramble', 5);">increase</a>/<a class="settings" onclick="adjustSize('scramble', -5);">decrease</a> scramble size
+				<br>
+zbll algorithms: <a href="https://drive.google.com/file/d/0B2g-oMdOeacZNTAwMjBkMDUtOTU5NC00MjBkLWFhNDEtMmNhODUxOTU2Njc2/view" target="_blank">click</a>
+			&emsp;&clubs;&emsp;
+				any questions/suggestions/bugs reports: please post in <a href="https://www.speedsolving.com/forum/threads/zbll-trainer.63572/" target="_blank" class="settings">this thread</a>
+			&emsp;&clubs;&emsp;
+<a href="https://github.com/Roman-/zbll-trainer.git" target="_blank" class="settings">GitHub repository</a>
+			</td>
+		</tr>
+	</table>
+        </div>
+
+	<div class="selection_layout"> 
+		<div id="cases_selection">
+		</div>
+
+		<div id="select_info">
+			<button class="abutton" style="vertical-align:middle" id="dbutton" onclick='changeMode(1)'><span>Done </span></button>
+			<ul>
+			  <li>Click on the picture to select / deselect all cases in the group</li>
+			  <li>Click on the item header to expand / collapse the group</li>
+			  <li>Green color means all cases in the group are selected; yellow - some cases are selected; white - no cases selected</li>
+			  <li>When you're ready, click Done</li>
+			</ul>
+			<br>
+			Any questions, ideas, bug reports: please post <a href='https://www.speedsolving.com/forum/threads/zbll-trainer.63572/' target="_blank">here</a>
+			<br>
+                        GitHub repository: <a href="https://github.com/Roman-/zbll-trainer.git" target="_blank" class="settings">click</a>
+		</div>
+
+		
+		<div id="zbllWindow">
+			<div id="zwHeader">
+				<div id="zwHeaderMessage">
+				</div>
+			</div>
+			<div id="zwPics">
+			</div>
+			<div id="zwFooter">
+				<div class="zwButton" id="allZwButton">&nbsp;all&nbsp;</div>
+				<div class="zwButton" id="noneZwButton">&nbsp;none&nbsp;</div>
+				<div class="zwButton" id="closeZwButton" onclick="closeZW();">&nbsp;done&nbsp;</div>
+			</div>
+		</div> <!-- zbllWindow -->
+	</div> <!-- selection layout -->
+	
+	<div id="zbllWindowBack" onclick='closeZW();'></div>
+
+</body>
+</html>
+<script src="scripts/timer.js"></script>
+<script src="scripts/casesmap.js"></script>
+<script src="scripts/selection.js"></script>
+<script src="scripts/practice.js"></script>
+<script>
+changeMode(0);
+</script>
+
+
+<script>
+
+
+</script>
