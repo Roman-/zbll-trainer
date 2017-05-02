@@ -99,6 +99,11 @@ function renderSelection()
         document.getElementById( idTdOll(oll) ).style.backgroundColor = colorBySelection(ollAllSel, ollNoneSel);
         document.getElementById( idHeaderOll(oll) ).innerHTML = ollHeaderContent(oll, zbllsInOll);
     }
+    
+    // Save the selection to local storage if possible
+    if (window.saveSelection) { // No guarantee that saveSelection function is ready, so test first
+        saveSelection();
+    }
 }
 
 /* items generator */
