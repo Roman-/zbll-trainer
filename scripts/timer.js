@@ -20,7 +20,7 @@ function randomElement(arr)
 }
 
 var lastScramble = "";
-var lastCaseName = "";
+var lastZbllCase = "";
 
 function generateScramble()
 {
@@ -31,7 +31,7 @@ function generateScramble()
     var finalAlg = applyRotationForAlgorithm(alg, rotation);
 
     window.lastScramble = finalAlg;
-    window.lastCaseName = zbllCase.desc;
+    window.lastZbllCase = zbllCase;
 
     return finalAlg;
 }
@@ -81,7 +81,7 @@ function inverse_scramble(s)
         else
             result = it + "' " + result;
     }
-    
+
     return result.substr(0, result.length-1);
 }
 

@@ -49,7 +49,10 @@ function fillSelected()
                         {
                             name: zbllName + ".svg",
                             algs: collMap[zbll]["algs"],
-                            desc: oll+"-"+coll+", "+zbll.replace("s", "/")
+                            desc: oll+"-"+coll+", "+zbll.replace("s", "/"),
+                            oll: oll,
+                            coll: coll,
+                            zbll: zbll,
                         }
                     );
                 }
