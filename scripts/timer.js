@@ -10,7 +10,7 @@ function showScramble()
         s = "scramble: " + generateScramble();
         window.allowStartingTimer = true;
     }
-            
+
     document.getElementById("scramble").innerHTML = s;
 }
 
@@ -32,7 +32,7 @@ function generateScramble()
 
     window.lastScramble = finalAlg;
     window.lastCaseName = zbllCase.desc;
-    
+
     return finalAlg;
 }
 
@@ -166,13 +166,13 @@ document.getElementById("bodyid").addEventListener("keydown", function(event) {
             confirmRemLast();
         return;
     }
-    
+
     if (!allowed || !window.allowStartingTimer)
         return; // preventing auto-repeat and empty scrambles
-            
+
     if (event.keyCode != 16) // shift
         allowed = false;
-            
+
     if (running)
     {
         // stop timer on any button
@@ -503,7 +503,7 @@ function loadstyle() {
 
 function applystyle() {
     document.getElementById("bodyid").style.backgroundColor = document.getElementById("bgcolor_in").value;
-    document.getElementById("bodyid").style.color = document.getElementById("textcolor_in").value;
+    document.getElementById("bodyid").style.color = timer.style.color = document.getElementById("textcolor_in").value;
     var inputs = document.getElementsByClassName("settinginput");
     Array.prototype.forEach.call(inputs, function(el) {
         el.style.backgroundColor = document.getElementById("bgcolor_in").value;
@@ -516,10 +516,10 @@ function applystyle() {
     savestyle();
 }
 
-function resetstyle() {
-    document.getElementById("bgcolor_in").value = "#f5f5f5";
-    document.getElementById("textcolor_in").value = "black";
-    document.getElementById("linkscolor_in").value = "#004411";
+function resetStyle(dark) {
+    document.getElementById("bgcolor_in").value = dark ? "#161616" : "#f5f5f5";
+    document.getElementById("textcolor_in").value = dark? "white" : "black";
+    document.getElementById("linkscolor_in").value = dark ? "#0ff" : "#004411";
     applystyle();
     savestyle();
 }
