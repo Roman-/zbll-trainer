@@ -5,8 +5,8 @@
 #select_info
 {
     position: absolute;
-    background-color: #fff;
     padding: 7px;
+    border: 1px dotted gray;
 }
 
 #cases_selection
@@ -43,27 +43,31 @@ a.settings {
 
 .collTd
 {
-	visibility: hidden; /*initially collapsed*/
+	visibility: hidden;
 }
 
 /* headers */
 
 .ollHeader {
-	background-color: #ddd;
+	/*background-color: #ddd;*/
 	cursor: pointer;
+    border: 1px solid gray;
 }
 
 .ollHeader:hover {
-	background-color: #aaa;
+	/*background-color: #aaa;*/
+    border: 1px solid gray;
 }
 
 .collHeader {
-	background-color: #ddd;
+	/*background-color: #ddd;*/
 	cursor: pointer;
+    border: 1px solid gray;
 }
 
 .collHeader:hover {
-	background-color: #aaa;
+	/*background-color: #aaa;*/
+    border: 1px solid gray;
 }
 
 .casesTable
@@ -148,6 +152,4 @@ td {	border: 1px solid #000;}
 .dbutton {
   display: inline-block; border-radius: 2px; background-color: #95a5a6; border: none; color: #FFFFFF; text-align: center; font-size: 18px; padding: 10px; transition: all 0.3s; cursor: pointer; margin: 5px;}
 .dbutton:hover {background-color: #74898b;}	
-
-/* misc */
 

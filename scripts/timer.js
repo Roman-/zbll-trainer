@@ -226,12 +226,12 @@ function timerStop() {
     waiting = true;
     running = false;
     clearTimeout(timeout);
-    
+
     var d = new Date();
     stopMiliseconds = d.getTime();
     timer.innerHTML = msToHumanReadable(stopMiliseconds - startMilliseconds);
-    timer.className = "timer_Stopped";
-    
+    timer.style.color = "#850000";
+
     appendStats();
     showScramble();
 }
@@ -239,7 +239,7 @@ function timerStop() {
 function timerSetReady() {
     waiting = false;
     timer.innerHTML = "0.00";
-    timer.className = "timer_Ready";
+    timer.style.color = "#008500";
 }
 
 function timerStart() {
@@ -247,11 +247,11 @@ function timerStart() {
     startMilliseconds = d.getTime();
     running = true;
     timeout = setInterval(displayTime, 10);
-    timer.className = "timer_Running";
+    timer.style.color = document.getElementById( "textcolor_in" ).value;
 }
 
 function timerAfterStop() {
-    timer.className = "timer_notRunning";
+    timer.style.color = document.getElementById( "textcolor_in" ).value;
 }
 
 
@@ -384,7 +384,7 @@ function fillResultInfo(r) {
 	s += "<b>Case</b>: " + r["name"] + "<br>";
 	document.getElementById("resultInfoContainer").innerHTML = s;
 	// picture from  visualcube
-	var bgcolor = document.body.style.backgroundColor;
+	var bgcolor = document.getElementById("bodyid").style.backgroundColor;
 	var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=f5f5f5&stage=ll&r=y35x-30&alg=" + 
 	    encodeURI(r["scramble"]).replace(/\'/g, "%27");
 	document.getElementById("resultPicContainer").innerHTML = "<img src='" + picurl + "'/>";
@@ -470,3 +470,63 @@ function read_cookie(name) {
     result && (result = JSON.parse(result[1]));
     return result;
 }
+
+// style-related
+
+//saves to localstorage
+function savestyle() {
+    try {
+        localStorage.setItem('bgcolor_in', document.getElementById("bgcolor_in").value);
+        localStorage.setItem('textcolor_in', document.getElementById("textcolor_in").value);
+        localStorage.setItem('linkscolor_in', document.getElementById("linkscolor_in").value);
+        return true;
+    }
+    catch(e) { return false; }
+}
+
+//loads from localstorage
+function loadstyle() {
+    try {
+        var bgcolor = localStorage.getItem('bgcolor_in');
+        if (bgcolor.length > 0) {
+            document.getElementById("bgcolor_in").value = localStorage.getItem('bgcolor_in');
+            document.getElementById("textcolor_in").value = localStorage.getItem('textcolor_in');
+            document.getElementById("linkscolor_in").value = localStorage.getItem('linkscolor_in');
+            return true;
+        }
+    }
+    catch(e) { return false; }
+}
+
+function applystyle() {
+    document.getElementById("bodyid").style.backgroundColor = document.getElementById("bgcolor_in").value;
+    document.getElementById("bodyid").style.color = document.getElementById("textcolor_in").value;
+    var inputs = document.getElementsByClassName("settinginput");
+    Array.prototype.forEach.call(inputs, function(el) {
+        el.style.backgroundColor = document.getElementById("bgcolor_in").value;
+        el.style.color = document.getElementById("textcolor_in").value;
+    });
+    var links = document.getElementsByClassName("settings");
+    Array.prototype.forEach.call(links, function(el) {
+        el.style.color = document.getElementById("linkscolor_in").value;
+    });
+    savestyle();
+}
+
+function resetstyle() {
+    document.getElementById("bgcolor_in").value = "#f5f5f5";
+    document.getElementById("textcolor_in").value = "black";
+    document.getElementById("linkscolor_in").value = "#004411";
+    applystyle();
+    savestyle();
+}
+
+document.getElementById("bgcolor_in").addEventListener("keydown", function(event) {
+    if (event.keyCode == 13 || event.keyCode == 32 || event.keyCode == 27) {
+        event.preventDefault()
+        document.getElementById("bgcolor_in").blur();
+    }
+});
+
+loadstyle();
+applystyle();

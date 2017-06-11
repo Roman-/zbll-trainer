@@ -53,11 +53,6 @@ checkbox
 	font-weight: bold;
 }
 
-#timer.timer_notRunning {color: #000;}
-#timer.timer_Ready {color: #008500;}
-#timer.timer_Stopped {color: #850000;}
-#timer.timer_Running {color: #000;}
-
 .big {
 	font-size: 30px;
 }
@@ -104,12 +99,16 @@ td {
 #resultinfo {
     height: 55%;
 }
-#resultInfoHeader {
-    background-color: #ddd;
+.resultInfoHeader {
+    border: 1px solid gray;
 }
 span.pllNameStats{
 	font-family: "Times New Roman", Georgia, Serif;
 	font-weight: bold;
+}
+
+input[type=text] {
+    border: 1px solid gray;
 }
 
 /* myButton */

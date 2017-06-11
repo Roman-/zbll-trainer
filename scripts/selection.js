@@ -2,7 +2,9 @@
 
 var colorAll = "#5f5";
 var colorSome = "#ff5";
-var colorNone = "#fff";
+function colorNone() {
+    return document.getElementById( "bgcolor_in" ).value;
+}
 
 prepareMap();
 generateSelectionTable();
@@ -11,7 +13,7 @@ adjustInfo();
 
 document.getElementById("bodyid").addEventListener("keydown", function(event) {
     if (event.keyCode == 27) // esc
-        closeZW();		
+        closeZW();
 });
 
 // allocate help;
@@ -62,7 +64,7 @@ function colorBySelection(all, none)
         return colorSome;
     if (all)
         return colorAll;
-    return colorNone;
+    return colorNone();
 }
 
 /// iterates the zbllMap and highlights HTML elements according to the selection
@@ -117,7 +119,7 @@ function generateSelectionTable()
     s += "<tr>";
     for (var oll in zbllMap) {
         if (zbllMap.hasOwnProperty(oll)) {
-            s += "<td id='" + idTdOll(oll) + "' style='background-color:" +colorNone+";'>" + ollItem(oll) + "</td>";
+            s += "<td id='" + idTdOll(oll) + "' style='background-color:" +colorNone()+";'>" + ollItem(oll) + "</td>";
             // .style.backgroundColor
         }
     }
@@ -151,7 +153,7 @@ function generateSelectionTable()
 function zbllItem(oll, coll, zbll) // div with img
 {
     var s = "";
-    var col = colorNone;
+    var col = colorNone();
     if (zbllMap[oll][coll][zbll]["c"])
         col = colorAll;
     s += "<div ";
@@ -273,7 +275,7 @@ function zbllClicked(oll, coll, zbll)
     if (newVal)
         document.getElementById( idItemZbll(oll, coll, zbll) ).style.backgroundColor = colorAll;
     else
-        document.getElementById( idItemZbll(oll, coll, zbll) ).style.backgroundColor = colorNone;
+        document.getElementById( idItemZbll(oll, coll, zbll) ).style.backgroundColor = colorNone();
     
     zbllMap[oll][coll][zbll]["c"] = newVal;
     
@@ -311,7 +313,7 @@ function selectAllZw(oll, coll, c)
         if (c)
             document.getElementById( idItemZbll(oll, coll, zbll) ).style.backgroundColor = colorAll;
         else
-            document.getElementById( idItemZbll(oll, coll, zbll) ).style.backgroundColor = colorNone;		
+            document.getElementById( idItemZbll(oll, coll, zbll) ).style.backgroundColor = colorNone();
     }
     updateZwHeader(oll, coll);
 }
