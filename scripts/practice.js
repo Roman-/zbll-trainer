@@ -34,7 +34,7 @@ function showSelectedInfo()
 }
 
 /// after selecting cases, this func fills selCases array with selected cases from map
-function fillSelected() 
+function fillSelected()
 {
     selCases = [];
     for (var oll in zbllMap) if (zbllMap.hasOwnProperty(oll)) {
@@ -59,8 +59,7 @@ function fillSelected()
 }
 
 /// \returns random integer from 0 to h
-function randomNum(h)
-{
+function randomNum(h) {
     return Math.floor(Math.random() * h);
 }
 
@@ -69,8 +68,7 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.split(search).join(replacement);
 };
 
-function inverse_scramble(s)
-{
+function inverse_scramble(s) {
     // deleting parantheses and double spaces
     s = s.replaceAll('[', " ");
     s = s.replaceAll(']', " ");
@@ -78,7 +76,7 @@ function inverse_scramble(s)
     s = s.replaceAll(')', " ");
     while(s.indexOf("  ") != -1)
         s = s.replaceAll("  ", " ");
-                    
+
     // replacing apostrophes with primes
     var apostrophesChars = "ʼ᾿ߴ՚’`";
     for (var i = 0; i < apostrophesChars.length; i++)
@@ -86,8 +84,7 @@ function inverse_scramble(s)
 
     var arr = s.split(" ");
     var result = "";
-    for (var i = 0; i < arr.length; i++)
-    {
+    for (var i = 0; i < arr.length; i++) {
         var it = arr[i];
         if (it.length == 0)
             continue;
@@ -98,6 +95,6 @@ function inverse_scramble(s)
         else
             result = it + "' " + result;
     }
-    
+
     return result;
 }

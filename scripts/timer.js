@@ -109,7 +109,7 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + "; " + expires;
 }
 
-/*		TIMER		*/
+/*        TIMER        */
 
 var startMilliseconds, stopMiliseconds; // date and time when timer was started
 var allowed = true; // allowed var is for preventing auto-repeat when you hold a button
@@ -138,7 +138,7 @@ function msToHumanReadable(duration) {
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10 && (minutes > 0 || hours > 0)) ? "0" + seconds : seconds;
     milliseconds = (milliseconds < 10) ? "0" + milliseconds : milliseconds;
-	
+
     hoursString = (hours == 0) ? "" : hours + ":";
     minutesString = (minutes == 0) ? "" : minutes + ":";
 
@@ -190,12 +190,12 @@ document.getElementById("bodyid").addEventListener("keydown", function(event) {
 document.getElementById("bodyid").addEventListener("keyup", function(event) {
     allowed = true;
     if (!window.allowStartingTimer)
-	return; // preventing auto-repeat
+        return; // preventing auto-repeat
     if (!running && !waiting && (event.keyCode == timerActivatingButton)) {
-	timerStart();
+        timerStart();
     }
     else {
-	timerAfterStop();
+        timerAfterStop();
     }
 });
 
@@ -204,21 +204,20 @@ timer.addEventListener("touchend", handleTouchEnd, false);
 
 function handleTouchEnd() {
     if (!window.allowStartingTimer)
-	return; // preventing auto-repeat
+        return; // preventing auto-repeat
     if (!running && !waiting) {
-	timerStart();
+        timerStart();
     }
     else {
-	timerAfterStop();
+        timerAfterStop();
     }
 }
 
 function handleTouchStart() {
     if (running)
-	timerStop();
+        timerStop();
     else {
-	// set green back
-	timerSetReady();
+        timerSetReady(); // set green back
     }
 }
 
@@ -260,10 +259,10 @@ var defTimerSize = 60;
 var defScrambleSize = 25;
 var timerSize = parseInt(getCookie("zblltimerSize"));
 if (isNaN(timerSize) || timerSize <= 0)
-	timerSize = defTimerSize;
+    timerSize = defTimerSize;
 var scrambleSize = parseInt(getCookie("zbllscrambleSize"));
 if (isNaN(scrambleSize) || scrambleSize <= 0)
-	scrambleSize = defScrambleSize;
+    scrambleSize = defScrambleSize;
 
 adjustSize('scramble', 0);
 adjustSize('timer', 0);
@@ -276,7 +275,7 @@ function adjustSize(item, inc)
         document.getElementById('timer').style.fontSize = window.timerSize + "px";
         setCookie("zblltimerSize", window.timerSize, 365);
     }
-    
+
     if (item == 'scramble')
     {
         window.scrambleSize += inc
@@ -311,7 +310,7 @@ function escapeHtml(text) {
 /// [0: ResultInstance, 1: ResultInstance, ...]
 var timesArray = read_cookie("zblltimesarray");
 if (timesArray == null)
-	timesArray = [];
+    timesArray = [];
 displayStats();
 
 // invoked right after the timer stopped
@@ -335,8 +334,8 @@ function confirmRem(i)
     var inst = window.timesArray[i];
     if (confirm("Are you sure you want to remove this time?\n\n" + inst["time"] + "\n\ntime details: " + inst["details"]))
     {
-	removeTime(i);
-	updateInstancesIndeces();
+        removeTime(i);
+        updateInstancesIndeces();
         displayStats();
     }
 }
@@ -345,16 +344,15 @@ function confirmRemLast()
 {
     var i = window.timesArray.length;
     if (i != 0)
-	confirmRem(i - 1);
+        confirmRem(i - 1);
 }
 
 /// requests confirmation and empty times array (clear session)
 function confirmClear()
 {
-    if (confirm("Are you sure you want to clear session?"))
-    {
-	window.timesArray = [];
-	displayStats();
+    if (confirm("Are you sure you want to clear session?")) {
+        window.timesArray = [];
+        displayStats();
     }
 }
 
@@ -365,8 +363,7 @@ function timeClicked(i) {
 
 /// \param r - result instance (see makeResultInstance)
 /// \returns html code for displaying a single instance
-function makeResultLabelHtml(r)
-{
+function makeResultLabelHtml(r) {
     return "<span class='timeResult' onclick='timeClicked(" + r["index"] + ")'>" + r["time"] + "</span>";
 }
 
@@ -375,7 +372,7 @@ function makeResultLabelHtml(r)
 /// set \param r to null if you want to clear result info
 function fillResultInfo(r) {
     if (r != null) {
-	// header
+        // header
         var delBtn = "<a class='settings' " +
                     "style='color: " + document.getElementById("linkscolor_in").value + "'" +
                     "onclick='confirmRem(" + r["index"] + ")'>"+
@@ -385,80 +382,78 @@ function fillResultInfo(r) {
         var s = "";
         s += "<b>Scramble</b>: " + r["scramble"] + "<br>";
         s += "<b>Case</b>: " + r["name"] + "<br>";
+        //s += "<b>Selected</b>: " + (window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"] ? "yes" : "no") + "<br>";
+
         document.getElementById("resultInfoContainer").innerHTML = s;
         // picture from  visualcube
         var bgcolor = document.getElementById("bodyid").style.backgroundColor;
-        var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=f5f5f5&stage=ll&r=y35x-30&alg=" + 
+        var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=f5f5f5&stage=ll&r=y35x-30&alg=" +
             encodeURI(r["scramble"]).replace(/\'/g, "%27");
         document.getElementById("resultPicContainer").innerHTML = "<img src='" + picurl + "'/>";
     }
     else {
-	document.getElementById("resultInfoHeader").innerHTML = "results info will be displayed there";
-	document.getElementById("resultInfoContainer").innerHTML = "";
-	document.getElementById("resultPicContainer").innerHTML = "";
+        document.getElementById("resultInfoHeader").innerHTML = "results info will be displayed there";
+        document.getElementById("resultInfoContainer").innerHTML = "";
+        document.getElementById("resultPicContainer").innerHTML = "";
     }
 }
 
 /// fills "times" right panel with times and last result info
-function displayStats()
-{
+function displayStats() {
     bake_cookie("zblltimesarray", window.timesArray);
     var len = window.timesArray.length
 
     var el = document.getElementById("times");
     el.innerHTML = "";
-    
-    if (len == 0)
-    {
-	fillResultInfo(null);
-	return;
+
+    if (len == 0) {
+        fillResultInfo(null);
+        return;
     }
-    
-    for (var i = 0; i < window.timesArray.length; i++)
-    {
-	el.innerHTML += makeResultLabelHtml(window.timesArray[i]);
-	if (i != len - 1)
-	    el.innerHTML += ", ";
+
+    for (var i = 0; i < window.timesArray.length; i++) {
+        el.innerHTML += makeResultLabelHtml(window.timesArray[i]);
+        if (i != len - 1)
+            el.innerHTML += ", ";
     }
     fillResultInfo(window.timesArray[window.timesArray.length - 1]);
 }
 
 /// foreach result instances, assign its index to number in array.
-/// might be helpful after user deleted the time and 
-function updateInstancesIndeces()
-{
+/// might be helpful after user deleted the time
+function updateInstancesIndeces() {
     for (var i = 0; i < window.timesArray.length; i++)
-    {
         window.timesArray[i]["index"] = i;
-    }
 }
 
-function makeResultInstance()
-{
-	var currentTime = document.getElementById("timer").innerHTML;
-	return {
-		"time": currentTime,
-		"scramble": window.lastScramble,
-		"name": window.lastCaseName,
-		"ms": timeStringToMseconds(currentTime) * 10, // *10 because current time 1.23 display only hundreths, not thousandth of a second
-		"index": window.timesArray.length
-	};
+function makeResultInstance() {
+    var currentTime = document.getElementById("timer").innerHTML;
+    return {
+        "time": currentTime,
+        "scramble": window.lastScramble,
+        "name": window.lastZbllCase.name,
+        "ms": timeStringToMseconds(currentTime) * 10, // *10 because current time 1.23 display only hundreths, not thousandth of a second
+        "index": window.timesArray.length,
+        "oll": window.lastZbllCase.oll,
+        "coll": window.lastZbllCase.coll,
+        "zbll": window.lastZbllCase.zbll,
+    };
 }
 
 // converts timestring to milliseconds (int)
 // 1:06.15 -> 6615
 function timeStringToMseconds(s) {
-		if (s == "")
-			return -1;
-		var parts = s.split(":");
-		var secs = parseFloat(parts[parts.length - 1]);
-		if (parts.length > 1) // minutes
-			secs += parseInt(parts[parts.length - 2]) * 60;
-		if (parts.length > 2) // hrs
-			secs += parseInt(parts[parts.length - 3]) * 3600;
-		if (isNaN(secs))
-			return -1;
-		return Math.round(secs * 100);
+        if (s == "")
+            return -1;
+        var parts = s.split(":");
+        var secs = parseFloat(parts[parts.length - 1]);
+        if (parts.length > 1) // minutes
+            secs += parseInt(parts[parts.length - 2]) * 60;
+        if (parts.length > 2) // hrs
+            secs += parseInt(parts[parts.length - 3]) * 3600;
+        if (isNaN(secs))
+            return -1;
+        return Math.round(secs * 100);
 }
 
 // storing js object in cookie

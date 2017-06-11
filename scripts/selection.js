@@ -20,16 +20,16 @@ document.getElementById("bodyid").addEventListener("keydown", function(event) {
 function adjustInfo()
 {
     var rect = document.getElementById( "cases_selection" ).getBoundingClientRect();
-    
-    document.getElementById( "select_info" ).style.left = 
+
+    document.getElementById( "select_info" ).style.left =
         rect.right + "px";
-    
-    document.getElementById( "select_info" ).style.width = 
+
+    document.getElementById( "select_info" ).style.width =
         (document.body.clientWidth - rect.right - 20) + "px";
-        
-    document.getElementById( "dbutton" ).style.width = 
+
+    document.getElementById( "dbutton" ).style.width =
         (document.body.clientWidth - rect.right - 30) + "px";
-            
+
 }
 
 
@@ -44,8 +44,7 @@ function idHeaderColl(oll,coll) {return "collHead-"+oll+"-"+coll;}
 function zbllSvg(oll,coll, zbll) {return "svg/"+oll+"-"+coll+"-"+zbll.replace("/", "s")+".svg";}
 
 
-function prepareMap()
-{
+function prepareMap() {
     for (var oll in zbllMap) if (zbllMap.hasOwnProperty(oll)) {
         var ollMap = zbllMap[oll];
         for (var coll in ollMap) if (ollMap.hasOwnProperty(coll)) {
@@ -101,7 +100,7 @@ function renderSelection()
         document.getElementById( idTdOll(oll) ).style.backgroundColor = colorBySelection(ollAllSel, ollNoneSel);
         document.getElementById( idHeaderOll(oll) ).innerHTML = ollHeaderContent(oll, zbllsInOll);
     }
-    
+
     // Save the selection to local storage if possible
     if (window.saveSelection) { // No guarantee that saveSelection function is ready, so test first
         saveSelection();
@@ -114,7 +113,7 @@ function generateSelectionTable()
     var s = "";
     var maxColls = 6;
     s += "<table class='casesTable'>";
-    
+
     // generate table header with OLL cases
     s += "<tr>";
     for (var oll in zbllMap) {
@@ -124,12 +123,12 @@ function generateSelectionTable()
         }
     }
     s += "</tr>";
-    
+
     // generating the rest of the table with coll cases
     for (var row = 0; row < maxColls; row++)
     {
         s += "<tr>";
-        
+
         for (var oll in zbllMap) {
             if (zbllMap.hasOwnProperty(oll)) {
                 if (oll == "H" && row > 3)
@@ -143,7 +142,7 @@ function generateSelectionTable()
                 }
             }
         }
-        
+
         s += "</tr>";
     }
     s += "</table>";
@@ -276,9 +275,9 @@ function zbllClicked(oll, coll, zbll)
         document.getElementById( idItemZbll(oll, coll, zbll) ).style.backgroundColor = colorAll;
     else
         document.getElementById( idItemZbll(oll, coll, zbll) ).style.backgroundColor = colorNone();
-    
+
     zbllMap[oll][coll][zbll]["c"] = newVal;
-    
+
     updateZwHeader(oll, coll);
 }
 
@@ -369,11 +368,11 @@ function displayZW(oll, coll)
             s += "</span><br><span class='nw'>";
     }
     document.getElementById( "zwPics" ).innerHTML = s; // this also deletes previous pics
-    
+
     // header
     updateZwHeader(oll, coll);
-    
-    // assign selectAllZw() to buttons 
+
+    // assign selectAllZw() to buttons
     document.getElementById( "noneZwButton" ).onclick = function(){selectAllZw(oll, coll, false);};
     document.getElementById( "allZwButton" ).onclick = function(){selectAllZw(oll, coll, true);};
 }
