@@ -376,18 +376,21 @@ function makeResultLabelHtml(r)
 function fillResultInfo(r) {
     if (r != null) {
 	// header
-        var delBtn = "<a class='settings' onclick='confirmRem(" + r["index"] + ")'>delete</a>";
-	document.getElementById("resultInfoHeader").innerHTML = "result #" + (r["index"] + 1) + "<b>: " + r["time"]
-            + "</b> (" +  delBtn + ")";
-	var s = "";
-	s += "<b>Scramble</b>: " + r["scramble"] + "<br>";
-	s += "<b>Case</b>: " + r["name"] + "<br>";
-	document.getElementById("resultInfoContainer").innerHTML = s;
-	// picture from  visualcube
-	var bgcolor = document.getElementById("bodyid").style.backgroundColor;
-	var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=f5f5f5&stage=ll&r=y35x-30&alg=" + 
-	    encodeURI(r["scramble"]).replace(/\'/g, "%27");
-	document.getElementById("resultPicContainer").innerHTML = "<img src='" + picurl + "'/>";
+        var delBtn = "<a class='settings' " +
+                    "style='color: " + document.getElementById("linkscolor_in").value + "'" +
+                    "onclick='confirmRem(" + r["index"] + ")'>"+
+                    "delete</a>";
+        document.getElementById("resultInfoHeader").innerHTML = "result #" + (r["index"] + 1) + "<b>: " + r["time"]
+                + "</b> (" +  delBtn + ")";
+        var s = "";
+        s += "<b>Scramble</b>: " + r["scramble"] + "<br>";
+        s += "<b>Case</b>: " + r["name"] + "<br>";
+        document.getElementById("resultInfoContainer").innerHTML = s;
+        // picture from  visualcube
+        var bgcolor = document.getElementById("bodyid").style.backgroundColor;
+        var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=f5f5f5&stage=ll&r=y35x-30&alg=" + 
+            encodeURI(r["scramble"]).replace(/\'/g, "%27");
+        document.getElementById("resultPicContainer").innerHTML = "<img src='" + picurl + "'/>";
     }
     else {
 	document.getElementById("resultInfoHeader").innerHTML = "results info will be displayed there";
@@ -521,11 +524,16 @@ function resetstyle() {
     savestyle();
 }
 
-document.getElementById("bgcolor_in").addEventListener("keydown", function(event) {
-    if (event.keyCode == 13 || event.keyCode == 32 || event.keyCode == 27) {
-        event.preventDefault()
-        document.getElementById("bgcolor_in").blur();
-    }
+// add key listeners to blur settings inputs
+var inputs = document.getElementsByClassName("settinginput");
+Array.prototype.forEach.call(inputs, function(el) {
+    el.addEventListener("keydown", function(event) {
+        if (event.keyCode == 13 || event.keyCode == 32 || event.keyCode == 27) {
+            event.preventDefault()
+            el.blur();
+        }
+    });
+
 });
 
 loadstyle();

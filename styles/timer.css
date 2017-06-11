@@ -1,12 +1,12 @@
-﻿body.niceBody {
-    background-color: #f5f5f5;
-}
-
-a.settings {
+﻿a.settings {
     text-decoration: underline;
     cursor: pointer;
     color: #004411;
     -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
+}
+
+a:visited {
+    color: inherit;
 }
 
 .selected {
