@@ -30,6 +30,9 @@ function adjustInfo()
     document.getElementById( "dbutton" ).style.width =
         (document.body.clientWidth - rect.right - 30) + "px";
 
+    if (document.getElementById( "previewPic" ) != null)
+        document.getElementById( "resultPicContainer" ).style.height = getPicSize() + "px";
+
 }
 
 

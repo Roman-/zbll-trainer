@@ -17,6 +17,7 @@ function changeMode(m)
         fillSelected();
         showSelectedInfo();
         showScramble();
+        adjustInfo();
     }
     else // select
     {

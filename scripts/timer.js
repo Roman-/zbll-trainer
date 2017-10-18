@@ -377,10 +377,18 @@ function makeResultLabelHtml(r) {
     return "<span class='timeResult' onclick='timeClicked(" + r["index"] + ")'>" + r["time"] + "</span>";
 }
 
+/// calculates preview picture size based on the available space we have
+function getPicSize() {
+    var pictureTop = document.getElementById("previewPic").getBoundingClientRect().top;
+    var cRect = document.getElementById("resultinfo").getBoundingClientRect();
+    return Math.max(50, Math.round(cRect.top + cRect.height - pictureTop) - 5);
+}
+
 /// fills resultInfo container with info about given result instance
 /// \param r result instsnce (see makeResultInstance)
 /// set \param r to null if you want to clear result info
 function fillResultInfo(r) {
+    var picContainer = document.getElementById("resultPicContainer");
     if (r != null) {
         // header
         var delBtn = "<a class='settings' " +
@@ -399,17 +407,18 @@ function fillResultInfo(r) {
 
 
         document.getElementById("resultInfoContainer").innerHTML = s;
-        // picture from  visualcube
-        var bgcolor = document.getElementById("bodyid").style.backgroundColor;
-        var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=f5f5f5&stage=ll&r=y35x-30&alg=" +
+        // picture from visualcube
+        var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=t&stage=ll&r=y35x-30&alg=" +
             encodeURI(r["scramble"]).replace(/\'/g, "%27");
-        document.getElementById("resultPicContainer").innerHTML = "<img src='" + picurl + "'/>";
+        picContainer.innerHTML = "<img id='previewPic' src='" + picurl + "'/>";
+        picContainer.style.height = getPicSize() + "px";
     }
     else {
         document.getElementById("resultInfoHeader").innerHTML = "results info will be displayed there";
         document.getElementById("resultInfoContainer").innerHTML = "";
-        document.getElementById("resultPicContainer").innerHTML = "";
+        picContainer.innerHTML = "";
     }
+
 }
 
 /// fills "times" right panel with times and last result info
