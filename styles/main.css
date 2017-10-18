@@ -8,12 +8,8 @@ img {
     pointer-events: none;
 }
 
-a.settings {
+a, a:not([href]), a.settings, a.settings:visited {
     text-decoration: underline;
     color: #004411;
     cursor: pointer;
-}
-
-a.settings:visited {
-    color: #004411;
 }

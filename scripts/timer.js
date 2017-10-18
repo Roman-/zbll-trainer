@@ -340,6 +340,16 @@ function confirmRem(i)
     }
 }
 
+function changeSelection(i) {
+    var r = window.timesArray[i];
+    var selected = !(window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"]);
+    window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"] = selected;
+    document.getElementById("changeSelBtn").innerHTML = selected ? "yes" : "no";
+    fillSelected();
+    showScramble();
+    showSelectedInfo();
+}
+
 function confirmRemLast()
 {
     var i = window.timesArray.length;
@@ -381,8 +391,12 @@ function fillResultInfo(r) {
                 + "</b> (" +  delBtn + ")";
         var s = "";
         s += "<b>Scramble</b>: " + r["scramble"] + "<br>";
-        s += "<b>Case</b>: " + r["name"] + "<br>";
-        //s += "<b>Selected</b>: " + (window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"] ? "yes" : "no") + "<br>";
+        s += "<b>Case</b>: " + r["oll"] +"-"+ r["coll"] +", "+ r["zbll"].replace("s", "/") + "<br>";
+        s += "<b>Selected</b>: <a id='changeSelBtn' class='settings' style='color: " +
+            document.getElementById("linkscolor_in").value +
+            "' onclick='changeSelection(" + r["index"] + ")'>"+
+            (window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"] ? "yes" : "no") + "</a><br>";
+
 
         document.getElementById("resultInfoContainer").innerHTML = s;
         // picture from  visualcube
