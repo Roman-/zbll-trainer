@@ -381,7 +381,8 @@ function makeResultLabelHtml(r) {
 function getPicSize() {
     var pictureTop = document.getElementById("previewPic").getBoundingClientRect().top;
     var cRect = document.getElementById("resultinfo").getBoundingClientRect();
-    return Math.max(50, Math.round(cRect.top + cRect.height - pictureTop) - 5);
+    var minSize = Math.min(cRect.top + cRect.height - pictureTop, cRect.width);
+    return Math.max(50, Math.round(minSize) - 5);
 }
 
 /// fills resultInfo container with info about given result instance
