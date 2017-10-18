@@ -1,8 +1,8 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<link rel="stylesheet" type="text/css" href="styles/main.css?v1">
-<link rel="stylesheet" type="text/css" href="styles/selection.css?v1">
-<link rel="stylesheet" type="text/css" href="styles/timer.css?v2">
+<link rel="stylesheet" type="text/css" href="styles/main.css?v2">
+<link rel="stylesheet" type="text/css" href="styles/selection.css?v2">
+<link rel="stylesheet" type="text/css" href="styles/timer.css?v3">
 <head>
 <title>
 ZBLL trainer
@@ -13,7 +13,7 @@ ZBLL trainer
 	<table id="mainTable">
 		<tr>
 			<td id="casesBox" colspan="2">
-			<a id='selectBtn' class="settings" onclick='changeMode(0)'>select cases</a><span id="selInfo"></span>
+			<a id='selectBtn' onclick='changeMode(0)'>select cases</a><span id="selInfo"></span>
 			</td>
 		</tr>
 		<tr>
@@ -27,7 +27,7 @@ ZBLL trainer
 				loading, please wait...
 			</td>
 			<td id="stats">
-				<div class="resultInfoHeader">times (<a class="settings" onclick="confirmClear();">clear</a>, <a class="settings" onclick="confirmRemLast()">delete last</a>):</div>
+				<div class="resultInfoHeader">times (<a onclick="confirmClear();">clear</a>, <a onclick="confirmRemLast()">delete last</a>):</div>
 				<div id="times"></div>
 				<div id="resultinfo">
 				    <div id='resultInfoHeader' class="resultInfoHeader">case info will be displayed there</div>
@@ -39,19 +39,19 @@ ZBLL trainer
 		
 		<tr>
 			<td colspan="2">
-				<a class="settings" onclick="adjustSize('timer', 8);">increase</a>/<a class="settings" onclick="adjustSize('timer', -8);">decrease</a> timer size
-				<br><a class="settings" onclick="adjustSize('scramble', 5);">increase</a>/<a class="settings" onclick="adjustSize('scramble', -5);">decrease</a> scramble size
+				<a onclick="adjustSize('timer', 8);">increase</a>/<a onclick="adjustSize('timer', -8);">decrease</a> timer size
+				<br><a onclick="adjustSize('scramble', 5);">increase</a>/<a onclick="adjustSize('scramble', -5);">decrease</a> scramble size
 				<br>
-                colors (<a class="settings" onclick='resetStyle(0)'>light</a>, <a class="settings" onclick='resetStyle(1)'>dark</a>):
+                colors (<a onclick='resetStyle(0)'>light</a>, <a onclick='resetStyle(1)'>dark</a>):
                 background <input type='text' value='#f5f5f5' class='settinginput' id='bgcolor_in' onchange="applystyle();" placeholder='#f5f5f5' maxlength='12'/>
               , text <input type='text' value='black' class='settinginput' id='textcolor_in' onchange="applystyle();"  placeholder='#000' maxlength='12'/>
               , links <input type='text' value='#004411' class='settinginput' id='linkscolor_in' onchange="applystyle();"  placeholder='#004411' maxlength='12'/>
                 <br>
-zbll algorithms: <a class="settings" href="https://drive.google.com/file/d/0B2g-oMdOeacZNTAwMjBkMDUtOTU5NC00MjBkLWFhNDEtMmNhODUxOTU2Njc2/view" target="_blank">click</a>
+zbll algorithms: <a href="https://drive.google.com/file/d/0B2g-oMdOeacZNTAwMjBkMDUtOTU5NC00MjBkLWFhNDEtMmNhODUxOTU2Njc2/view" target="_blank">click</a>
 			&emsp;&clubs;&emsp;
-				any questions/suggestions/bugs reports: please post in <a href="https://www.speedsolving.com/forum/threads/zbll-trainer.63572/" target="_blank" class="settings">this thread</a>
+				any questions/suggestions/bugs reports: please post in <a href="https://www.speedsolving.com/forum/threads/zbll-trainer.63572/" target="_blank">this thread</a>
 			&emsp;&clubs;&emsp;
-<a href="https://github.com/Roman-/zbll-trainer.git" target="_blank" class="settings">GitHub repository</a>
+<a href="https://github.com/Roman-/zbll-trainer.git" target="_blank">GitHub repository</a>
 			</td>
 		</tr>
 	</table>
@@ -70,9 +70,9 @@ zbll algorithms: <a class="settings" href="https://drive.google.com/file/d/0B2g-
 			  <li>When you're ready, click Done</li>
 			</ul>
 			<br>
-			Any questions, ideas, bug reports: please post <a href='https://www.speedsolving.com/forum/threads/zbll-trainer.63572/' target="_blank" class="settings">here</a>
+			Any questions, ideas, bug reports: please post <a href='https://www.speedsolving.com/forum/threads/zbll-trainer.63572/' target="_blank">here</a>
 			<br>
-                        GitHub repository: <a href="https://github.com/Roman-/zbll-trainer.git" target="_blank" class="settings">click</a>
+                        GitHub repository: <a href="https://github.com/Roman-/zbll-trainer.git" target="_blank">click</a>
 		</div>
 
 		
@@ -96,9 +96,9 @@ zbll algorithms: <a class="settings" href="https://drive.google.com/file/d/0B2g-
 </body>
 </html>
 <script src="scripts/casesmap_compressed.js?v1"></script>
-<script src="scripts/timer.js?v2"></script>
-<script src="scripts/selection.js?v2"></script>
-<script src="scripts/practice.js?v2"></script>
+<script src="scripts/timer.js?v3"></script>
+<script src="scripts/selection.js?v3"></script>
+<script src="scripts/practice.js?v3"></script>
 <script src="scripts/saveload.js?v1"></script>
 <script>
 changeMode(0);

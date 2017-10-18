@@ -392,8 +392,7 @@ function fillResultInfo(r) {
     var picContainer = document.getElementById("resultPicContainer");
     if (r != null) {
         // header
-        var delBtn = "<a class='settings' " +
-                    "style='color: " + document.getElementById("linkscolor_in").value + "'" +
+        var delBtn = "<a style='color: " + document.getElementById("linkscolor_in").value + "'" +
                     "onclick='confirmRem(" + r["index"] + ")'>"+
                     "delete</a>";
         document.getElementById("resultInfoHeader").innerHTML = "result #" + (r["index"] + 1) + "<b>: " + r["time"]
@@ -401,7 +400,7 @@ function fillResultInfo(r) {
         var s = "";
         s += "<b>Scramble</b>: " + r["scramble"] + "<br>";
         s += "<b>Case</b>: " + r["oll"] +"-"+ r["coll"] +", "+ r["zbll"].replace("s", "/") + "<br>";
-        s += "<b>Selected</b>: <a id='changeSelBtn' class='settings' style='color: " +
+        s += "<b>Selected</b>: <a id='changeSelBtn' style='color: " +
             document.getElementById("linkscolor_in").value +
             "' onclick='changeSelection(" + r["index"] + ")'>"+
             (window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"] ? "yes" : "no") + "</a><br>";
@@ -528,7 +527,7 @@ function applystyle() {
         el.style.backgroundColor = document.getElementById("bgcolor_in").value;
         el.style.color = document.getElementById("textcolor_in").value;
     });
-    var links = document.getElementsByClassName("settings");
+    var links = document.getElementsByTagName("a");
     Array.prototype.forEach.call(links, function(el) {
         el.style.color = document.getElementById("linkscolor_in").value;
     });

@@ -1,15 +1,4 @@
-﻿a.settings {
-    text-decoration: underline;
-    cursor: pointer;
-    color: #004411;
-    -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
-}
-
-a:visited {
-    color: inherit;
-}
-
-.selected {
+﻿.selected {
     font-size: 20px;
     border: 1px solid #000;
     background-color:#ee9;
