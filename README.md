@@ -1,8 +1,17 @@
 # ZBLL trainer
+## http://bestsiteever.ru/zbll/
 
 The purpose of this project and its details are described on speedsolving forum in [this post](https://www.speedsolving.com/forum/threads/zbll-trainer.63572/).  
-Stable version deployed there: <http://bestsiteever.ru/zbll/>  
-Master branch of current repository deployed there: <http://bestsiteever.ru/zbll_deploy/>
+
+TODO list
+---------
+
+- generate more scrambles, remove 2gen scrambles
+- add custom presets saving feature
+- fix lauout issues on small displays (selection page)
+- show suggested alg (might be from Swanson's or Jabari's list)
+- add the anti-sune pictures angle setting.
+- different timer layout for smartphones
 
 How it works
 ------------
