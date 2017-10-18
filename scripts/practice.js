@@ -18,6 +18,7 @@ function changeMode(m)
         showSelectedInfo();
         showScramble();
         adjustInfo();
+        displayStats();
     }
     else // select
     {
