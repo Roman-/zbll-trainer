@@ -129,6 +129,8 @@ var timerActivatingButton = 32; // 17 for ctrl
 var timeout;
 
 function msToHumanReadable(duration) {
+    if (!Number.isFinite(duration))
+        return "-";
     var milliseconds = parseInt((duration%1000)/10)
         , seconds = parseInt((duration/1000)%60)
         , minutes = parseInt((duration/(1000*60))%60)
@@ -419,6 +421,62 @@ function fillResultInfo(r) {
         picContainer.innerHTML = "";
     }
 
+}
+
+/// calculates average of \param n in window.timesArray in interval from (end-n, end]
+function getAverage(end, n) {
+    if (end < n-1)
+        return Infinity;
+    var sum = 0, ms, best=Infinity, worst=-1;
+    for (var i = end; i > end-n; i--) {
+        ms = window.timesArray[i]["ms"];
+        if (ms < best)
+            best = ms;
+        if (ms > worst)
+            worst = ms;
+        sum += ms;
+    }
+    return (sum-best-worst)/(n-2);
+}
+
+/// displays averages etc.
+function displayStatsBox() {
+    var len = window.timesArray.length;
+    document.getElementById("resultInfoHeader").innerHTML = "stats: " + len + " solves";
+    document.getElementById("resultPicContainer").innerHTML = "";
+    var s = "";
+    if (len > 1) {
+        var best = Infinity, worst = -1, sum = 0, bestIns, worstIns, bestAo5 = best, bestAo12 = best, ao5, ao12;
+        for (var i = 0; i < len; i++) {
+            var ms = window.timesArray[i]["ms"];
+            sum += ms;
+            // best and worst
+            if (ms < best) {
+                best = ms;
+                bestIns = window.timesArray[i];
+            } if (ms > worst) {
+                worst = ms;
+                worstIns = window.timesArray[i];
+            }
+            // averages
+            ao5 = getAverage(i, 5);
+            if (ao5 < bestAo5)
+                bestAo5 = ao5;
+            ao12 = getAverage(i, 12);
+            if (ao12 < bestAo12)
+                bestAo12 = ao12;
+        }
+        s += "best time: " + makeResultLabelHtml(bestIns) + "<br>";
+        s += "worst time: " + makeResultLabelHtml(worstIns) + "<br><br>";
+        s += "current ao5: " + msToHumanReadable(ao5) + "<br>";
+        s += "best ao5: " + msToHumanReadable(bestAo5) + "<br><br>";
+        s += "current ao12: " + msToHumanReadable(ao12) + "<br>";
+        s += "best ao12: " + msToHumanReadable(bestAo12) + "<br><br>";
+        s += "session avg: " + msToHumanReadable((sum-best-worst)/(len-2)) + "<br>";
+        s += "session mean: " + msToHumanReadable(sum/len) + "<br>";
+    }
+
+    document.getElementById("resultInfoContainer").innerHTML = s;
 }
 
 /// fills "times" right panel with times and last result info
