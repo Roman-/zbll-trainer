@@ -332,7 +332,7 @@ function removeTime(i)
 function confirmRem(i)
 {
     var inst = window.timesArray[i];
-    if (confirm("Are you sure you want to remove this time?\n\n" + inst["time"] + "\n\ntime details: " + inst["details"]))
+    if (confirm("Are you sure you want to remove this time?\n\n" + inst["time"]))
     {
         removeTime(i);
         updateInstancesIndeces();
