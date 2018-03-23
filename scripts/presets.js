@@ -4,6 +4,8 @@ document.getElementById('presetName').addEventListener("keyup", function(event) 
 
 function loadPresets() {
     zbllPresets = JSON.parse(loadLocal('zbllPresets', new Map()));
+    if (zbllPresets == null)
+        zbllPresets = new Map();
     displayPresets();
 }
 
