@@ -2,18 +2,22 @@
 {
     display: none;
 }
-#select_info
-{
-    position: absolute;
-    padding: 7px;
-    border: 1px dotted gray;
+
+#cases_selection {
+    display: inline-block;
 }
 
-#cases_selection
+#panel_right
 {
-    display:inline-block;
+    display: inline;
+    width: auto;
     position: absolute;
+    border: 1px dotted gray;
+    padding: 7px;
 }
+
+.prs-h { text-align:center; }
+.prs-o { float:right; }
 
 #sl {white-space: nowrap;}
 
