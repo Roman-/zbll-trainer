@@ -1,38 +1,34 @@
 var selCases = [];
+var recaps = [];
 var currentNum;
 
-/// \param m = mode: 1 = practicing, 0 = selection
+/// \param m = mode: 0 = selection, 1 = practicing, 2 = recap
 function changeMode(m)
 {
     var pr = document.getElementsByClassName("practice_layout");
     for (var i = 0; i < pr.length; i++)
-        pr[i].style.display = m == 1 ? 'initial' : 'none';
+        pr[i].style.display = (m == 0) ? 'none' : 'initial';
 
     var se = document.getElementsByClassName("selection_layout");
     for (var i = 0; i < se.length; i++)
-        se[i].style.display = m == 0 ? 'initial' : 'none';
+        se[i].style.display = (m == 0) ? 'initial' : 'none';
 
-    if (m == 1) // practice
-    {
-        fillSelected();
-        showSelectedInfo();
-        showScramble();
-        adjustInfo();
-        displayStats();
-    }
-    else // select
-    {
+    if (m == 0) {
+        // selection layout
         renderSelection();
         adjustInfo();
+        return;
     }
-}
 
-// show how many cases selected
-function showSelectedInfo()
-{
-    var n = selCases.length;
-    var s = (n == 0) ? "" : " | <b>" + n + "</b> zblls selected";
-    document.getElementById("selInfo").innerHTML = s;
+    // switch to practising layout
+    fillSelected();
+    recaps = (m == 2) ? selCases.slice() : [];
+    // practice
+    fillSelected();
+    displayPracticeInfo();
+    showScramble();
+    adjustInfo();
+    displayStats();
 }
 
 /// after selecting cases, this func fills selCases array with selected cases from map

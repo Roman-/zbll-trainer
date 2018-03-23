@@ -22,10 +22,29 @@ function randomElement(arr)
 var lastScramble = "";
 var lastZbllCase = "";
 
+function displayPracticeInfo() {
+    var s = " | <b> " + window.selCases.length + "</b> selected";
+    if (window.recaps.length > 0)
+        s += " | <b>" + window.recaps.length + "</b> to recap";
+
+    document.getElementById("selInfo").innerHTML = s;
+}
+
 function generateScramble()
 {
+    displayPracticeInfo();
     // get random case
-    var zbllCase = randomElement(selCases);
+    var zbllCase;
+    if (recaps.length == 0) {
+        // train mode
+        zbllCase = randomElement(window.selCases);
+    } else {
+        // recap mode: select the case
+        zbllCase = randomElement(window.recaps);
+        // remove it from the array
+        const index = window.recaps.indexOf(zbllCase);
+        window.recaps.splice(index, 1);
+    }
     var alg = inverse_scramble(randomElement(zbllCase.algs));
     var rotation = randomElement(["", "y", "y2", "y'"]);
     var finalAlg = applyRotationForAlgorithm(alg, rotation);
@@ -329,8 +348,8 @@ function changeSelection(i) {
     window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"] = selected;
     document.getElementById("changeSelBtn").innerHTML = selected ? "yes" : "no";
     fillSelected();
-    showScramble();
-    showSelectedInfo();
+    //showScramble();
+    displayPracticeInfo();
 }
 
 function confirmRemLast()

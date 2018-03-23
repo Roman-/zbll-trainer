@@ -141,7 +141,7 @@ td {	border: 1px solid #000;}
 
 /* done button that appends ">" on hover */
 .abutton {
-  display: inline-block; border-radius: 2px; background-color: #95a5a6; border: none; color: #FFFFFF; text-align: center; font-size: 18px; padding: 10px; transition: all 0.3s; cursor: pointer; margin: 5px;}
+vertical-align:middle; display: inline-block; border-radius: 2px; background-color: #95a5a6; border: none; color: #FFFFFF; text-align: center; font-size: 18px; padding: 10px; transition: all 0.3s; cursor: pointer; margin: 5px;}
 .abutton span { cursor: pointer; display: inline-block; position: relative; transition: 0.3s;}
 .abutton span:after {content: '»'; position: absolute; opacity: 0; top: 0; right: -20px; transition: 0.3s;}
 .abutton:hover span { padding-right: 25px;}
