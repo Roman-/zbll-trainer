@@ -61,20 +61,28 @@ zbll algorithms: <a href="https://drive.google.com/file/d/0B2g-oMdOeacZNTAwMjBkM
 		<div id="cases_selection">
 		</div>
 
-		<div id="select_info">
-			<button class="abutton" id="dbutton" onclick='changeMode(2)'><span>Done</span></button>
-            <!--<button class="abutton" id="rcbutton" onclick='changeMode(2)'><span>Recap</span></button>-->
-			<ul>
-			  <li>Click on the picture to select / deselect all cases in the group</li>
-			  <li>Click on the item header to expand / collapse the group</li>
-			  <li>Green color means all cases in the group are selected; yellow - some cases are selected; white - no cases selected</li>
-			  <li>When you're ready, click Done</li>
-			</ul>
-			<br>
-			Any questions, ideas, bug reports: please post <a href='https://www.speedsolving.com/forum/threads/zbll-trainer.63572/' target="_blank">here</a> <br>
-                GitHub repository: <a href="https://github.com/Roman-/zbll-trainer.git" target="_blank">click</a> <br>
-                Offline version: <a href='https://github.com/Roman-/zbll-trainer/archive/master.zip'>zip</a> <br>
-		</div>
+        <div id="panel_right">
+            <div id="select_info">
+                <button class="abutton" id="dbutton" onclick='changeMode(2)'><span>Done</span></button>
+                <!--<button class="abutton" id="rcbutton" onclick='changeMode(2)'><span>Recap</span></button>-->
+                <ul>
+                  <li>Click on the picture to select / deselect all cases in the group</li>
+                  <li>Click on the item header to expand / collapse the group</li>
+                  <li>Green color means all cases in the group are selected; yellow - some cases are selected; white - no cases selected</li>
+                  <li>When you're ready, click Done</li>
+                </ul>
+                <br>
+                Any questions, ideas, bug reports: please post <a href='https://www.speedsolving.com/forum/threads/zbll-trainer.63572/' target="_blank">here</a> <br>
+                    GitHub repository: <a href="https://github.com/Roman-/zbll-trainer.git" target="_blank">click</a> <br>
+                    Offline version: <a href='https://github.com/Roman-/zbll-trainer/archive/master.zip'>zip</a> <br>
+            </div>
+            <div id="presets">
+                <hr>
+                <input type='text' id='presetName' placeholder='Preset name' maxlength='15' size='15' value='New preset'/> <a onclick='addNewPreset()'>save</a>
+                <div class="prs-l" id="prslist">
+                </div>
+            </div>
+        </div>
 
 		
 		<div id="zbllWindow">
@@ -101,6 +109,7 @@ zbll algorithms: <a href="https://drive.google.com/file/d/0B2g-oMdOeacZNTAwMjBkM
 <script src="scripts/practice.js?v4"></script>
 <script src="scripts/timer.js?v8"></script>
 <script src="scripts/selection.js?v5"></script>
+<script src="scripts/presets.js?v1"></script>
 <script>
 changeMode(0);
 </script>

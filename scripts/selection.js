@@ -36,14 +36,13 @@ function adjustInfo()
 {
     var rect = document.getElementById( "cases_selection" ).getBoundingClientRect();
 
-    document.getElementById( "select_info" ).style.left =
-        rect.right + "px";
+    document.getElementById( "panel_right" ).style.left = rect.right + "px";
 
-    document.getElementById( "select_info" ).style.width =
-        (document.body.clientWidth - rect.right - 20) + "px";
+    document.getElementById( "panel_right" ).style.width =
+        (document.body.clientWidth - rect.right - 30) + "px";
 
     document.getElementById( "dbutton" ).style.width =
-        (document.body.clientWidth - rect.right - 30) + "px";
+        (document.body.clientWidth - rect.right - 40) + "px";
 
     if (document.getElementById( "previewPic" ) != null)
         document.getElementById( "resultPicContainer" ).style.height = getPicSize() + "px";
