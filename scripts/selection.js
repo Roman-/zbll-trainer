@@ -8,8 +8,23 @@ function colorNone() {
 
 prepareMap();
 generateSelectionTable();
+loadSelection();
 renderSelection();
 adjustInfo();
+
+function saveSelection() {
+    return saveLocal('zbllSelection', getSelectionStringFromZBLLMap());
+}
+
+function loadSelection() {
+    var selectionString = loadLocal('zbllSelection', '');
+    if (selectionString == '') {
+        console.warn("failed loading selection");
+        return false;
+    }
+    setZBLLMapFromSelectionString(selectionString);
+    return true;
+}
 
 document.getElementById("bodyid").addEventListener("keydown", function(event) {
     if (event.keyCode == 27) // esc
@@ -393,20 +408,4 @@ function closeZW()
         document.getElementById( "zbllWindow" ).style.display = 'none';
         renderSelection();
     }
-}
-
-/* cookies */
-
-function bake_cookie(name, obj) {
-    var cookie = [name, '=', JSON.stringify(obj), '; domain=.', window.location.host.toString(), '; path=/;'].join('');
-    document.cookie = cookie;
-}
-
-// reading js object from cookie
-function read_cookie(name) {
-    var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
-    console.log("read_c string: ");
-    console.log(result);
-
-    return result && (result = JSON.parse(result[1]));
 }

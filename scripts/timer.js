@@ -85,30 +85,6 @@ function inverse_scramble(s)
     return result.substr(0, result.length-1);
 }
 
-/* saving cookies */
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
-}
-
 /*        TIMER        */
 
 var startMilliseconds, stopMiliseconds; // date and time when timer was started
@@ -259,10 +235,10 @@ function timerAfterStop() {
 // sizes. Too tired, cannot produce normal code
 var defTimerSize = 60;
 var defScrambleSize = 25;
-var timerSize = parseInt(getCookie("zblltimerSize"));
+var timerSize = parseInt(loadLocal("zblltimerSize", ''));
 if (isNaN(timerSize) || timerSize <= 0)
     timerSize = defTimerSize;
-var scrambleSize = parseInt(getCookie("zbllscrambleSize"));
+var scrambleSize = parseInt(loadLocal("zbllscrambleSize",''));
 if (isNaN(scrambleSize) || scrambleSize <= 0)
     scrambleSize = defScrambleSize;
 
@@ -275,14 +251,14 @@ function adjustSize(item, inc)
     {
         window.timerSize += inc
         document.getElementById('timer').style.fontSize = window.timerSize + "px";
-        setCookie("zblltimerSize", window.timerSize, 365);
+        saveLocal("zblltimerSize", window.timerSize);
     }
 
     if (item == 'scramble')
     {
         window.scrambleSize += inc
         document.getElementById('scramble').style.fontSize = window.scrambleSize + "px";
-        setCookie("zbllscrambleSize", window.scrambleSize, 365);
+        saveLocal("zbllscrambleSize", window.scrambleSize);
     }
 }
 
@@ -310,9 +286,14 @@ function escapeHtml(text) {
 }
 
 /// [0: ResultInstance, 1: ResultInstance, ...]
-var timesArray = read_cookie("zblltimesarray");
-if (timesArray == null)
-    timesArray = [];
+var timesArray = [];
+try {
+    var loadedTa = JSON.parse(loadLocal("zblltimesarray", '[]'));
+    if (loadedTa != null)
+        timesArray = loadedTa;
+} catch (e) {
+    console.warn("can\'t load times. Running ZBLL trainer for the first time?");
+}
 displayStats();
 
 // invoked right after the timer stopped
@@ -481,7 +462,7 @@ function displayStatsBox() {
 
 /// fills "times" right panel with times and last result info
 function displayStats() {
-    bake_cookie("zblltimesarray", window.timesArray);
+    saveLocal("zblltimesarray", JSON.stringify(window.timesArray));
     var len = window.timesArray.length
 
     var el = document.getElementById("times");
@@ -536,21 +517,6 @@ function timeStringToMseconds(s) {
             return -1;
         return Math.round(secs * 100);
 }
-
-// storing js object in cookie
-function bake_cookie(name, obj) {
-    var cookie = [name, '=', JSON.stringify(obj), '; domain=.', window.location.host.toString(), '; path=/;'].join('');
-    document.cookie = cookie;
-}
-
-// reading js object from cookie
-function read_cookie(name) {
-    var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
-    result && (result = JSON.parse(result[1]));
-    return result;
-}
-
-// style-related
 
 //saves to localstorage
 function savestyle() {
