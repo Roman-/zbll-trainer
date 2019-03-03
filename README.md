@@ -7,8 +7,6 @@ TODO list
 ---------
 
 - generate more scrambles, remove 2gen scrambles
-- add custom presets saving feature
-- fix lauout issues on small displays (selection page)
 - show suggested alg (might be from Swanson's or Jabari's list)
 - add the anti-sune pictures angle setting.
 - different timer layout for smartphones
