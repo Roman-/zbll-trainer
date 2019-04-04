@@ -585,6 +585,13 @@ function resetStyle(dark) {
     savestyle();
 }
 
+function toggleColorSettings() {
+    var d = document.getElementById("colorSettings").style.display;
+    console.log(d);
+    document.getElementById("colorSettings").style.display = (d == "inline") ?  "none" : "inline";
+    console.log(document.getElementById("colorSettings").style.display);
+}
+
 // add key listeners to blur settings inputs
 var inputs = document.getElementsByClassName("settinginput");
 Array.prototype.forEach.call(inputs, function(el) {

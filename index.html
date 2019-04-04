@@ -2,7 +2,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <link rel="stylesheet" type="text/css" href="styles/main.css?v2">
 <link rel="stylesheet" type="text/css" href="styles/selection.css?v2">
-<link rel="stylesheet" type="text/css" href="styles/timer.css?v3">
+<link rel="stylesheet" type="text/css" href="styles/timer.css?v4">
 <head>
 <title>
 ZBLL trainer
@@ -38,20 +38,20 @@ ZBLL trainer
 		</tr>
 		
 		<tr>
-			<td colspan="2">
-				<a onclick="adjustSize('timer', 8);">increase</a>/<a onclick="adjustSize('timer', -8);">decrease</a> timer size
-				<br><a onclick="adjustSize('scramble', 5);">increase</a>/<a onclick="adjustSize('scramble', -5);">decrease</a> scramble size
-				<br>
-                colors (<a onclick='resetStyle(0)'>light</a>, <a onclick='resetStyle(1)'>dark</a>):
-                background <input type='text' value='#f5f5f5' class='settinginput' id='bgcolor_in' onchange="applystyle();" placeholder='#f5f5f5' maxlength='12'/>
-              , text <input type='text' value='black' class='settinginput' id='textcolor_in' onchange="applystyle();"  placeholder='#000' maxlength='12'/>
-              , links <input type='text' value='#004411' class='settinginput' id='linkscolor_in' onchange="applystyle();"  placeholder='#004411' maxlength='12'/>
+			<td colspan="2" style="text-align: center;">
+				<a onclick="adjustSize('timer', -8);">⊖</a> timer <a onclick="adjustSize('timer', 8);">⊕</a> |
+				<a onclick="adjustSize('scramble', -5);">⊖</a> scramble <a onclick="adjustSize('scramble', 5);">⊕</a> |
+                colors (<a onclick='resetStyle(0)'>light</a>, <a onclick='resetStyle(1)'>dark</a>)
+                <a onclick='toggleColorSettings()'>⚙</a>
+                <span id='colorSettings'>background <input type='text' value='#f5f5f5' class='settinginput' id='bgcolor_in' onchange="applystyle();" placeholder='#f5f5f5' maxlength='12' size='7'/>
+              , text <input type='text' value='black' class='settinginput' id='textcolor_in' onchange="applystyle();"  placeholder='#000' maxlength='12' size='7'/>
+              , links <input type='text' value='#004411' class='settinginput' id='linkscolor_in' onchange="applystyle();"  placeholder='#004411' maxlength='12' size='7'/></span>
                 <br>
 zbll algorithms: <a href="https://drive.google.com/file/d/0B2g-oMdOeacZNTAwMjBkMDUtOTU5NC00MjBkLWFhNDEtMmNhODUxOTU2Njc2/view" target="_blank">click</a>
-			&emsp;&clubs;&emsp;
-				any questions/suggestions/bugs reports: please post in <a href="https://www.speedsolving.com/forum/threads/zbll-trainer.63572/" target="_blank">this thread</a>
-			&emsp;&clubs;&emsp;
+			&clubs;
 <a href="https://github.com/Roman-/zbll-trainer.git" target="_blank">GitHub repository</a>
+			&clubs;
+by <a href="https://bestsiteever.ru/me/" target="_blank">Roman Strakhov</a> with ❤
 			</td>
 		</tr>
 	</table>
@@ -107,7 +107,7 @@ zbll algorithms: <a href="https://drive.google.com/file/d/0B2g-oMdOeacZNTAwMjBkM
 <script src="scripts/casesmap_compressed.js?v1"></script>
 <script src="scripts/saveload.js?v2"></script>
 <script src="scripts/practice.js?v4"></script>
-<script src="scripts/timer.js?v8"></script>
+<script src="scripts/timer.js?v9"></script>
 <script src="scripts/selection.js?v5"></script>
 <script src="scripts/presets.js?v2"></script>
 <script>
