@@ -46,13 +46,36 @@ function generateScramble()
         window.recaps.splice(index, 1);
     }
     var alg = inverse_scramble(randomElement(zbllCase.algs));
-    var rotation = randomElement(["", "y", "y2", "y'"]);
-    var finalAlg = applyRotationForAlgorithm(alg, rotation);
+    var finalAlg = applyRotationButLessB(alg);
 
     window.lastScramble = finalAlg;
     window.lastZbllCase = zbllCase;
 
     return finalAlg;
+}
+
+// shuffles array in place. \param a an array containing the items.
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
+// applies 2 random 'y' rotations to the given \param alg and returns the one with less B moves in it
+function applyRotationButLessB(alg) {
+    var yArr = shuffle(["", "y", "y2", "y'"]);
+    let a1 = applyRotationForAlgorithm(alg, yArr[0]);
+    let a2 = applyRotationForAlgorithm(alg, yArr[2]);
+
+    let numB1 = (a1.match(/B/g) || []).length;
+    let numB2 = (a2.match(/B/g) || []).length;
+
+    return numB1 < numB2 ? a1 : a2;
 }
 
 // http://stackoverflow.com/questions/15604140/replace-multiple-strings-with-multiple-other-strings
