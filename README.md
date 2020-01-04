@@ -6,7 +6,7 @@ The purpose of this project and its details are described on speedsolving forum 
 TODO list
 ---------
 
-- generate more scrambles, remove 2gen scrambles
+- generate more and scrambles, make them equally long
 - show suggested alg (might be from Swanson's or Jabari's list)
 - add the anti-sune pictures angle setting.
 - different timer layout for smartphones
