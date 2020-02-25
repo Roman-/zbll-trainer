@@ -1,4 +1,6 @@
 var allowStartingTimer;
+var flatPicture = parseInt(loadLocal("flatPicture", "0"));
+
 /// invokes generateScramble() and sets scramble string
 function showScramble()
 {
@@ -433,7 +435,8 @@ function fillResultInfo(r) {
 
         document.getElementById("resultInfoContainer").innerHTML = s;
         // picture from visualcube
-        var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=t&stage=ll&r=y35x-30&alg=" +
+        var viewOption = (flatPicture) ? "view=plan" : "r=y35x-30";
+        var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=t&stage=ll&"+viewOption+"&alg=" +
             encodeURI(r["scramble"]).replace(/\'/g, "%27");
         picContainer.innerHTML = "<img id='previewPic' src='" + picurl + "'/>";
         picContainer.style.height = getPicSize() + "px";
@@ -444,6 +447,13 @@ function fillResultInfo(r) {
         picContainer.innerHTML = "";
     }
 
+}
+
+function onFlat3DviewToggle() {
+    flatPicture = (flatPicture + 1) % 2;
+    saveLocal("flatPicture", flatPicture);
+    if (timesArray.length > 0)
+        fillResultInfo(timesArray[timesArray.length - 1]); // last result?
 }
 
 /// calculates average of \param n in window.timesArray in interval from (end-n, end]
