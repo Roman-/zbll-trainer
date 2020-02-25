@@ -199,7 +199,7 @@ document.getElementById("bodyid").addEventListener("keydown", function(event) {
         timerStop();
         return;
     }
-    else if (event.keyCode == timerActivatingButton)
+    else if (event.keyCode == timerActivatingButton && currentMode != 0)
     {
         timerSetReady();
         return;
@@ -211,7 +211,7 @@ document.getElementById("bodyid").addEventListener("keyup", function(event) {
     allowed = true;
     if (!window.allowStartingTimer)
         return; // preventing auto-repeat
-    if (!running && !waiting && (event.keyCode == timerActivatingButton)) {
+    if (!running && !waiting && (event.keyCode == timerActivatingButton) && currentMode != 0) {
         timerStart();
     }
     else {

@@ -1,10 +1,12 @@
 var selCases = [];
 var recaps = [];
 var currentNum;
+var currentMode = 0; // 0 = selection, 1 = practicing, 2 = recap
 
 /// \param m = mode: 0 = selection, 1 = practicing, 2 = recap
 function changeMode(m)
 {
+    currentMode = m;
     var pr = document.getElementsByClassName("practice_layout");
     for (var i = 0; i < pr.length; i++)
         pr[i].style.display = (m == 0) ? 'none' : 'initial';
