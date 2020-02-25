@@ -3,7 +3,7 @@ loadPresets();
 document.getElementById('presetName').addEventListener("keyup", function(event) { if (event.keyCode === 13) { addNewPreset(); this.blur();} });
 
 function loadPresets() {
-    zbllPresets = JSON.parse(loadLocal('zbllPresets', new Map()));
+    zbllPresets = JSON.parse(loadLocal('zbllPresets'));
     if (zbllPresets == null)
         zbllPresets = new Map();
     displayPresets();

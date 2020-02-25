@@ -277,10 +277,10 @@ function timerAfterStop() {
 // sizes. Too tired, cannot produce normal code
 var defTimerSize = 60;
 var defScrambleSize = 25;
-var timerSize = parseInt(loadLocal("zblltimerSize", ''));
+var timerSize = parseInt(loadLocal("zblltimerSize", 0));
 if (isNaN(timerSize) || timerSize <= 0)
     timerSize = defTimerSize;
-var scrambleSize = parseInt(loadLocal("zbllscrambleSize",''));
+var scrambleSize = parseInt(loadLocal("zbllscrambleSize", 0));
 if (isNaN(scrambleSize) || scrambleSize <= 0)
     scrambleSize = defScrambleSize;
 

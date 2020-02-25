@@ -14,10 +14,11 @@ function saveLocal(name, value) {
 }
 
 /// \returns loaded value or specified defaultValue in case of error
-function loadLocal(name, defaultValue) {
+function loadLocal(name, defaultValue = null) {
     // If the platform supports localStorage, then load the selection
     try {
-        return localStorage.getItem(name);
+        let val = localStorage.getItem(name);
+        return (val === null) ? defaultValue : val;
     }
     catch(e) {
         // Either no selection in localStorage or browser does not support localStorage (fail silently)
