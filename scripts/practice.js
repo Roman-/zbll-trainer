@@ -44,10 +44,8 @@ function fillSelected()
             for (var zbll in collMap) if (collMap.hasOwnProperty(zbll)) {
                 if (collMap[zbll]["c"])
                 {
-                    var zbllName = oll+"-"+coll+"-"+zbll;
                     window.selCases.push(
                         {
-                            name: zbllName + ".svg",
                             algs: collMap[zbll]["algs"],
                             desc: oll+"-"+coll+", "+zbll.replace("s", "/"),
                             oll: oll,

@@ -58,7 +58,7 @@ function idItemColl(oll,coll) {return "item-"+oll+"-"+coll;}
 function idItemZbll(oll,coll, zbll) {return "item-"+oll+"-"+coll+"-"+zbll;}
 function idHeaderOll(oll) {return "ollHead-"+oll;}
 function idHeaderColl(oll,coll) {return "collHead-"+oll+"-"+coll;}
-function zbllSvg(oll,coll, zbll) {return "svg/"+oll+"-"+coll+"-"+zbll.replace("/", "s")+".svg";}
+function zbllSvg(oll,coll, zbll) {return "svg/"+Glob.topOr3D+"/"+oll+"-"+coll+"-"+zbll.replace("/", "s")+".svg";}
 
 
 function prepareMap() {
@@ -193,7 +193,7 @@ function collItem(oll, coll) // div
 {
     var s = "";
     s += collHeader(oll, coll);
-    s += "<div onmousedown='collClicked(\"" + oll + "\",\"" + coll + "\")' class='ollItem'><img src='svg/" 
+    s += "<div onmousedown='collClicked(\"" + oll + "\",\"" + coll + "\")' class='ollItem'><img src='svg/" + Glob.topOr3D + "/"
             + oll+"-"+coll + ".svg' width='100px'/></div>";
     return s;
 }

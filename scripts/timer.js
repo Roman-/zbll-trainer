@@ -1,5 +1,4 @@
 var allowStartingTimer;
-var flatPicture = parseInt(loadLocal("flatPicture", "0"));
 
 /// invokes generateScramble() and sets scramble string
 function showScramble()
@@ -395,6 +394,7 @@ function confirmClear()
 
 /// \param i index of result instance
 function timeClicked(i) {
+    Glob.indexViewing = i;
     fillResultInfo(window.timesArray[i]);
 }
 
@@ -435,7 +435,7 @@ function fillResultInfo(r) {
 
         document.getElementById("resultInfoContainer").innerHTML = s;
         // picture from visualcube
-        var viewOption = (flatPicture) ? "view=plan" : "r=y35x-30";
+        var viewOption = (Glob.topOr3D == '3D') ? "r=y35x-30" : "view=plan";
         var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=t&stage=ll&"+viewOption+"&alg=" +
             encodeURI(r["scramble"]).replace(/\'/g, "%27");
         picContainer.innerHTML = "<img id='previewPic' src='" + picurl + "'/>";
@@ -445,15 +445,17 @@ function fillResultInfo(r) {
         document.getElementById("resultInfoHeader").innerHTML = "results info will be displayed there";
         document.getElementById("resultInfoContainer").innerHTML = "";
         picContainer.innerHTML = "";
+        Glob.indexViewing = 0;
     }
 
 }
 
 function onFlat3DviewToggle() {
-    flatPicture = (flatPicture + 1) % 2;
-    saveLocal("flatPicture", flatPicture);
-    if (timesArray.length > 0)
-        fillResultInfo(timesArray[timesArray.length - 1]); // last result?
+    Glob.topOr3D = (Glob.topOr3D == 'top') ? '3D' : 'top';
+    saveLocal("topOr3D", Glob.topOr3D);
+    generateSelectionTable(); // redraw selection
+    if (Glob.indexViewing < timesArray.length)
+        fillResultInfo(timesArray[Glob.indexViewing]);
 }
 
 /// calculates average of \param n in window.timesArray in interval from (end-n, end]
@@ -530,7 +532,8 @@ function displayStats() {
         if (i != len - 1)
             el.innerHTML += ", ";
     }
-    fillResultInfo(window.timesArray[window.timesArray.length - 1]);
+    Glob.indexViewing = window.timesArray.length - 1;
+    fillResultInfo(window.timesArray[Glob.indexViewing]);
 }
 
 /// foreach result instances, assign its index to number in array.
@@ -545,7 +548,7 @@ function makeResultInstance() {
     return {
         "time": currentTime,
         "scramble": window.lastScramble,
-        "name": window.lastZbllCase.name,
+        // "name": window.lastZbllCase.name,
         "ms": timeStringToMseconds(currentTime) * 10, // *10 because current time 1.23 display only hundreths, not thousandth of a second
         "index": window.timesArray.length,
         "oll": window.lastZbllCase.oll,
