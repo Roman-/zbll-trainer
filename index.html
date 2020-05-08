@@ -1,14 +1,14 @@
 <html>
-<link rel="stylesheet" type="text/css" href="styles/main.css?v5">
-<link rel="stylesheet" type="text/css" href="styles/selection.css?v5">
-<link rel="stylesheet" type="text/css" href="styles/timer.css?v5">
+<link rel="stylesheet" type="text/css" href="styles/main.css?v6">
+<link rel="stylesheet" type="text/css" href="styles/selection.css?v6">
+<link rel="stylesheet" type="text/css" href="styles/timer.css?v6">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <meta name="description" content="A timer-like tool to learn and practice zbll algorithms. You can specify ZBLL cases & catigories to practice, recap forgotten ZBLLs, create presets to practise and learn. More info on the speedsolving thread" />
 <meta name="keywords" content="zbll, zbll trainer, zbll algorithms, cubing, speedcubing, oll, pll" />
 <meta name="author" content="Roman Strakhov">
 <title>
-ZBLL trainer
+ZBLL trainer — best site ever
 </title>
 </head>
 <body class="niceBody" id="bodyid" onresize="adjustInfo()">
@@ -42,10 +42,10 @@ ZBLL trainer
 		
 		<tr>
 			<td colspan="2" style="text-align: center;">
-				<a onclick="adjustSize('timer', -8);">⊖</a> timer <a onclick="adjustSize('timer', 8);">⊕</a> |
-				<a onclick="adjustSize('scramble', -5);">⊖</a> scramble <a onclick="adjustSize('scramble', 5);">⊕</a> |
+				<a class='smallBtn' onclick="adjustSize('timer', -8);">⊖</a> timer <a class='smallBtn' onclick="adjustSize('timer', 8);">⊕</a> |
+				<a class='smallBtn' onclick="adjustSize('scramble', -5);">⊖</a> scramble <a class='smallBtn' onclick="adjustSize('scramble', 5);">⊕</a> |
                 colors (<a onclick='resetStyle(0)'>light</a>, <a onclick='resetStyle(1)'>dark</a>)
-                <a onclick='toggleColorSettings()'>⚙</a>
+                <a class='smallBtn' onclick='toggleColorSettings()'>⚙</a>
                 <span id='colorSettings'>background <input type='text' value='#f5f5f5' class='settinginput' id='bgcolor_in' onchange="applystyle();" placeholder='#f5f5f5' maxlength='12' size='7'/>
               , text <input type='text' value='black' class='settinginput' id='textcolor_in' onchange="applystyle();"  placeholder='#000' maxlength='12' size='7'/>
               , links <input type='text' value='#004411' class='settinginput' id='linkscolor_in' onchange="applystyle();"  placeholder='#004411' maxlength='12' size='7'/></span>
@@ -66,8 +66,8 @@ by <a href="https://bestsiteever.ru/me/" target="_blank">Roman Strakhov</a> with
 
         <div id="panel_right">
             <div id="select_info">
-                <button class="abutton" id="dbutton" onclick='changeMode(1)'><span>Done</span></button>
-                <!--<button class="abutton" id="rcbutton" onclick='changeMode(2)'><span>Recap</span></button>-->
+                <button class="abutton" id="dbutton" title="Practice selected cases randomly" onclick='changeMode(1)'>Done</button>
+                <button class="abutton thinner" title="Recap each selected case once" onclick='changeMode(2)'>Recap</button>
                 <ul>
                   <li>Click on the picture to select / deselect all cases in the group</li>
                   <li>Click on the item header to expand / collapse the group</li>
