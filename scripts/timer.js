@@ -31,14 +31,59 @@ function displayPracticeInfo() {
     document.getElementById("selInfo").innerHTML = s;
 }
 
+// Returns element from (window.selCases) based on its probability, and then decreases its probability by a factor.
+// Normalizes probabilities before
+function getZbllCasePbased() {
+    // normalize selcases.p, making their sum=1
+    function normalizeProps() {
+        let sum = 0;
+        window.selCases.forEach(function (c) {
+            sum += c.p;
+        });
+
+        if (sum == 0)
+            return console.log("sum=0. Nothing is selected?");
+
+        window.selCases.forEach(function (c) {
+            c.p /= sum;
+        });
+    }
+    const factor = 2; // each case that we've already seen has that much less probability of showing up
+
+    // debugging: log probabilities
+    function logProps(index) {
+        let s = "";
+        for (let i = 0; i < window.selCases.length; ++i) {
+            if (i == index)
+                s += "^";
+            s += Number.parseFloat(window.selCases[i].p).toFixed(3) + (i == window.selCases.length-1 ? "" : ", ");
+        }
+        console.log(s);
+    }
+
+    normalizeProps();
+
+    let x = Math.random(); // 0 to 1, determines the case we're selecting
+
+    var i = 0;
+    for (; i < window.selCases.length; ++i) {
+        x -= window.selCases[i].p;
+        if (x <= 0)
+            break;
+    }
+
+    window.selCases[i].p /= factor;
+    return window.selCases[i];
+}
+
 function generateScramble()
 {
     displayPracticeInfo();
     // get random case
     var zbllCase;
     if (recaps.length == 0) {
-        // train mode
-        zbllCase = randomElement(window.selCases);
+        // train mode. Instead of random element, get element based on probabilities
+        zbllCase = getZbllCasePbased();
     } else {
         // recap mode: select the case
         zbllCase = randomElement(window.recaps);
@@ -366,11 +411,13 @@ function confirmRem(i)
     }
 }
 
+// user clicks "selected: no(yes)" on the scramble in practising mode
 function changeSelection(i) {
     var r = window.timesArray[i];
     var selected = !(window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"]);
     window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"] = selected;
     document.getElementById("changeSelBtn").innerHTML = selected ? "yes" : "no";
+    // TODO instead of re-generating window.selCases, just remove one case from it
     fillSelected();
     //showScramble();
     displayPracticeInfo();

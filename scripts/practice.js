@@ -26,7 +26,6 @@ function changeMode(m)
     fillSelected();
     recaps = (m == 2) ? selCases.slice() : [];
     // practice
-    fillSelected();
     displayPracticeInfo();
     showScramble();
     adjustInfo();
@@ -34,6 +33,7 @@ function changeMode(m)
 }
 
 /// after selecting cases, this func fills selCases array with selected cases from map
+// case.p = probability, normaized
 function fillSelected()
 {
     selCases = [];
@@ -46,6 +46,7 @@ function fillSelected()
                 {
                     window.selCases.push(
                         {
+                            p: 1, // probability of generating scramble with this case
                             algs: collMap[zbll]["algs"],
                             desc: oll+"-"+coll+", "+zbll.replace("s", "/"),
                             oll: oll,
