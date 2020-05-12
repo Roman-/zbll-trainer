@@ -203,7 +203,7 @@ function ollHeader(oll) // div
 
 function ollHeaderContent(oll, n) // text
 {
-    var total = (oll == "H" ? 48 : 72);
+    var total = (oll == "H" ? 40 : 72);
     if (n == 0)
             return oll + " (0/" + total + ") ▼";
     return oll + " (<b>" + n + "</b>/" + total + ") ▼";
@@ -218,9 +218,10 @@ function collHeader(oll, coll) // div
 
 function collHeaderContent(oll, coll, n) // text
 {
+    let t = (oll == 'H' && (coll == 'BBFF' || coll == 'FBFB')) ? 8 : 12; // total
     if (n == 0)
-        return coll + " (0/12)";
-    return coll + " (<b>" + n + "</b>/12)";
+        return coll + " (0/"+t+")";
+    return coll + " (<b>" + n + "</b>/"+t+")";
 }
 
 /// returns COLL name of \param oll by number n (0 to 5)
@@ -393,7 +394,8 @@ function displayZW(oll, coll)
 
 function updateZwHeader(oll, coll)
 {
-    document.getElementById( "zwHeaderMessage" ).innerHTML = coll + "(" + nZbllsInColl(oll, coll) + "/12)";
+    let t = (oll == 'H' && (coll == 'BBFF' || coll == 'FBFB')) ? 8 : 12; // total
+    document.getElementById( "zwHeaderMessage" ).innerHTML = coll + "(" + nZbllsInColl(oll, coll) + "/"+t+")";
 }
 
 function closeZW()
