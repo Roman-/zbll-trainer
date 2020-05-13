@@ -12,6 +12,7 @@
     display: inline;
     width: auto;
     position: absolute;
+    top: 0;
     border: 1px dotted gray;
     padding: 7px;
 }

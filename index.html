@@ -1,12 +1,15 @@
+<!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="styles/main.css?v6">
-<link rel="stylesheet" type="text/css" href="styles/selection.css?v6">
-<link rel="stylesheet" type="text/css" href="styles/timer.css?v6">
+<link rel="stylesheet" type="text/css" href="styles/main.css?v7">
+<link rel="stylesheet" type="text/css" href="styles/selection.css?v7">
+<link rel="stylesheet" type="text/css" href="styles/timer.css?v7">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <meta name="description" content="A timer-like tool to learn and practice zbll algorithms. You can specify ZBLL cases & catigories to practice, recap forgotten ZBLLs, create presets to practise and learn. More info on the speedsolving thread" />
 <meta name="keywords" content="zbll, zbll trainer, zbll algorithms, cubing, speedcubing, oll, pll" />
 <meta name="author" content="Roman Strakhov">
+<link rel="manifest" href="manifest.json?v1">
+<link rel="shortcut icon" href="images/favicon.ico" />
 <title>
 ZBLL trainer — best site ever
 </title>
@@ -81,7 +84,7 @@ by <a href="https://bestsiteever.ru/me/" target="_blank">Roman Strakhov</a> with
             </div>
             <div id="presets">
                 <hr>
-                <input type='text' id='presetName' placeholder='Preset name' maxlength='20' size='20' value='New preset'/> <a onclick='addNewPreset()'>save</a>
+                <input type='text' id='presetName' placeholder='Preset name' maxlength='20' size='15' value='New preset'/> <a onclick='addNewPreset()'>save</a>
                 <div class="prs-l" id="prslist">
                 </div>
             </div>
@@ -107,13 +110,14 @@ by <a href="https://bestsiteever.ru/me/" target="_blank">Roman Strakhov</a> with
 
 </body>
 </html>
-<script src="scripts/casesmap.js?v14"></script>
-<script src="scripts/saveload.js?v14"></script>
-<script src="scripts/glob.js?v14"></script>
-<script src="scripts/practice.js?v14"></script>
-<script src="scripts/timer.js?v14"></script>
-<script src="scripts/selection.js?v14"></script>
-<script src="scripts/presets.js?v14"></script>
+<script src="scripts/casesmap.js?v16"></script>
+<script src="scripts/saveload.js?v16"></script>
+<script src="scripts/glob.js?v16"></script>
+<script src="scripts/practice.js?v16"></script>
+<script src="scripts/timer.js?v16"></script>
+<script src="scripts/selection.js?v16"></script>
+<script src="scripts/presets.js?v16"></script>
+<script src="https://bestsiteever.ru/support/stats.js"></script>
 <script>
 changeMode(0);
 </script>

@@ -416,7 +416,7 @@ function changeSelection(i) {
     var r = window.timesArray[i];
     var selected = !(window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"]);
     window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"] = selected;
-    document.getElementById("changeSelBtn").innerHTML = selected ? "yes" : "no";
+    document.getElementById("changeSelBtn").innerHTML = selected ? "is selected" : "not selected";
     // TODO instead of re-generating window.selCases, just remove one case from it
     fillSelected();
     //showScramble();
@@ -473,11 +473,11 @@ function fillResultInfo(r) {
                 + "</b> (" +  delBtn + ")";
         var s = "";
         s += "<b>Scramble</b>: " + r["scramble"] + "<br>";
-        s += "<b>Case</b>: " + r["oll"] +"-"+ r["coll"] +", "+ r["zbll"].replace("s", "/") + "<br>";
-        s += "<b>Selected</b>: <a id='changeSelBtn' style='color: " +
+        s += "<b>Case</b>: " + r["oll"] +"-"+ r["coll"] +", "+ r["zbll"].replace("s", "/") + " ";
+        s += "<a id='changeSelBtn' style='color: " +
             document.getElementById("linkscolor_in").value +
             "' onclick='changeSelection(" + r["index"] + ")'>"+
-            (window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"] ? "yes" : "no") + "</a><br>";
+            (window.zbllMap[r["oll"]][r["coll"]][r["zbll"]]["c"] ? "is selected" : "not selected") + "</a><br>";
 
 
         document.getElementById("resultInfoContainer").innerHTML = s;
