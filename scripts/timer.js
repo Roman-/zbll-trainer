@@ -4,15 +4,18 @@ var allowStartingTimer;
 function showScramble()
 {
     window.allowStartingTimer = false;
+    var scramble = "";
     var s;
     if (selCases.length == 0)
         s = "click \"select cases\" above and pick some ZBLLs to practice";
     else {
-        s = "scramble: " + generateScramble();
+        scramble = generateScramble();
+        s = "scramble: " + scramble;
         window.allowStartingTimer = true;
     }
 
     document.getElementById("scramble").innerHTML = s;
+    preloadImage(scramble);
 }
 
 function randomElement(arr)
@@ -481,11 +484,7 @@ function fillResultInfo(r) {
 
 
         document.getElementById("resultInfoContainer").innerHTML = s;
-        // picture from visualcube
-        var viewOption = (Glob.topOr3D == '3D') ? "r=y35x-30" : "view=plan";
-        var picurl = "https://bestsiteever.ru/visualcube/visualcube.php?fmt=svg&bg=t&stage=ll&"+viewOption+"&alg=" +
-            encodeURI(r["scramble"]).replace(/\'/g, "%27");
-        picContainer.innerHTML = "<img id='previewPic' src='" + picurl + "'/>";
+        picContainer.innerHTML = "<img id='previewPic' src='" + scrambleToVcUrl(r["scramble"]) + "'/>";
         picContainer.style.height = getPicSize() + "px";
     }
     else {
