@@ -477,6 +477,13 @@ function fillResultInfo(r) {
         var s = "";
         s += "<b>Scramble</b>: " + r["scramble"] + "<br>";
         s += "<b>Case</b>: " + r["oll"] +"-"+ r["coll"] +", "+ r["zbll"].replace("s", "/") + " ";
+
+        // bookmark btn
+        var isBookmarked = isInBookmarks(r["oll"], r["coll"], r["zbll"]);
+        var bmTitle = isBookmarked ? "saved" : "save case";
+        var bmInnerHtml = isBookmarked ? "&#9733;" : "&#9734;";
+        var ocScript = "onBookmarkClicked('"+r["oll"]+"', '"+r["coll"]+"', '"+r["zbll"]+"')";
+        s += "<a id='bookmarkBtn' title='"+bmTitle+"' class='bmBtn smallBtn' onclick=\""+ocScript+"\">"+bmInnerHtml+"</a>";
         s += "<a id='changeSelBtn' style='color: " +
             document.getElementById("linkscolor_in").value +
             "' onclick='changeSelection(" + r["index"] + ")'>"+

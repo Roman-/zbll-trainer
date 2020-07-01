@@ -45,8 +45,16 @@ function getSelectionStringFromZBLLMap() {
     return JSON.stringify(selection);
 }
 
+// Applies the selection in the given string to zbllMap
 function setZBLLMapFromSelectionString(string) {
-    // Applies the selection in the given string to zbllMap
+    // reset zbllMap first
+    for (var oll in zbllMap) {
+        for (var coll in zbllMap[oll]) {
+            for (var zbll in zbllMap[oll][coll]) {
+                zbllMap[oll][coll][zbll].c = false;
+            }
+        }
+    }
 
     var selection = JSON.parse(string);
 

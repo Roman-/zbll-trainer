@@ -124,3 +124,7 @@ a.smallBtn, a.smallBtn:not([href]), a.smallBtn:visited {
 a.smallBtn:hover {
     background-color: rgba(0,0,0,0.3);
 }
+
+.bmBtn {
+    margin-right: 4px;
+}
