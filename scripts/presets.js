@@ -11,10 +11,8 @@ function loadPresets() {
         zbllPresets = new Map();
     if (zbllPresets.hasOwnProperty(mbPresetName)) {
         bookmarksPresets = JSON.parse(zbllPresets[mbPresetName]);
-        console.log("loaded zbll presets (WITH bookmarks)", zbllPresets);
     } else {
         bookmarksPresets = {};
-        console.log("loaded zbll presets (without bookmarks)", zbllPresets);
     }
     displayPresets();
 }
@@ -45,6 +43,9 @@ function addNewPreset() {
     if (zbllPresets[name] == null || confirm("Preset '" + name + "' already exists. Replace?")) {
         var s = getSelectionStringFromZBLLMap();
         zbllPresets[name] = s;
+        if (name == mbPresetName) {
+            bookmarksPresets = JSON.parse(s);
+        }
     }
     savePresets();
     displayPresets();
@@ -73,8 +74,8 @@ function loadPreset(name) {
 function isInBookmarks(oll, coll, zbll) {
     var result = bookmarksPresets.hasOwnProperty(oll)
         && bookmarksPresets[oll].hasOwnProperty(coll)
-        && bookmarksPresets[oll][coll].hasOwnProperty(zbll.replace("/", "s"));
-        // && bookmarksPresets[oll][coll][zbll.replace("/", "s")] == true;
+        && bookmarksPresets[oll][coll].hasOwnProperty(zbll.replace("/", "s"))
+        && bookmarksPresets[oll][coll][zbll.replace("/", "s")] == true;
     return result;
 }
 
@@ -111,11 +112,9 @@ function onBookmarkClicked(oll, coll, zbll) {
         removeBookmark(oll, coll, zbll);
         document.getElementById("bookmarkBtn").innerHTML = "&#9734;";
         document.getElementById("bookmarkBtn").title = "save case";
-        console.log("removed bookmark ",oll,coll,zbll);
     } else {
         addToBookmark(oll, coll, zbll);
         document.getElementById("bookmarkBtn").innerHTML = "&#9733;";
         document.getElementById("bookmarkBtn").title = "saved";
-        console.log("added bookmark ",oll,coll,zbll);
     }
 }
