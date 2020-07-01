@@ -198,15 +198,16 @@ function collItem(oll, coll) // div
 function ollHeader(oll) // div
 {
     return "<div class='ollHeader' id='" +idHeaderOll(oll)+"' onclick='expandOll(\""+oll+"\")'>"+
-            ollHeaderContent(oll,0) +"</div>"; // ▲
+            ollHeaderContent(oll,0) +"</div>";
 }
 
 function ollHeaderContent(oll, n) // text
 {
     var total = (oll == "H" ? 40 : 72);
+    var collapseIconSpan = "<span id='collapseSpan-"+oll+"' style='float:right'>▼</span>";
     if (n == 0)
-            return oll + " (0/" + total + ") ▼";
-    return oll + " (<b>" + n + "</b>/" + total + ") ▼";
+            return oll + " (0/" + total + ") " + collapseIconSpan;
+    return oll + " (<b>" + n + "</b>/" + total + ") " + collapseIconSpan;
 }
 
 /// \param n number of cases selected
@@ -251,14 +252,19 @@ function changeVisib(el)
 /* expand / collapse */
 function expandOll(oll)
 {
+    var isCollapsed = false;
     // "td-" + oll + "-" + collName
     var ollMap = zbllMap[oll];
     for (var coll in ollMap) {
         if (ollMap.hasOwnProperty(coll)) {
             // expland or collapse
-            changeVisib(document.getElementById("td-" + oll + "-" + coll));
+            let collElem = document.getElementById("td-" + oll + "-" + coll);
+            changeVisib(collElem);
+            if (collElem.style.visibility == "hidden" || collElem.style.visibility == "")
+                isCollapsed = true;
         }
     }
+    document.getElementById("collapseSpan-" + oll).innerHTML = isCollapsed ? "▼":"▲"
 }
 
 function expandColl(oll, coll)
