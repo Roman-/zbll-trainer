@@ -483,7 +483,7 @@ function fillResultInfo(r) {
         document.getElementById("resultInfoContainer").innerHTML = s;
         // picture from visualcube
         var viewOption = (Glob.topOr3D == '3D') ? "r=y35x-30" : "view=plan";
-        var picurl = "http://cube.crider.co.uk/visualcube.php?fmt=svg&bg=t&stage=ll&"+viewOption+"&alg=" +
+        var picurl = "https://bestsiteever.ru/visualcube/visualcube.php?fmt=svg&bg=t&stage=ll&"+viewOption+"&alg=" +
             encodeURI(r["scramble"]).replace(/\'/g, "%27");
         picContainer.innerHTML = "<img id='previewPic' src='" + picurl + "'/>";
         picContainer.style.height = getPicSize() + "px";
