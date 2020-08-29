@@ -37,7 +37,7 @@ function displayPresets() {
 }
 
 function addNewPreset() {
-    var name = document.getElementById('presetName').value;
+    var name = document.getElementById('presetName').value.replace(/[\'\"\\]+/g, ' ').trim();
     if (name.trim() == "")
         return console.warn("savePreset: name is empty");
     if (zbllPresets[name] == null || confirm("Preset '" + name + "' already exists. Replace?")) {
