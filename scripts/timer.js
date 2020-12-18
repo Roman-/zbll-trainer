@@ -271,7 +271,8 @@ document.getElementById("bodyid").addEventListener("keyup", function(event) {
 timer.addEventListener("touchstart", handleTouchStart, false);
 timer.addEventListener("touchend", handleTouchEnd, false);
 
-function handleTouchEnd() {
+function handleTouchEnd(e) {
+    e.preventDefault();
     if (!window.allowStartingTimer)
         return; // preventing auto-repeat
     if (!running && !waiting) {
@@ -282,7 +283,8 @@ function handleTouchEnd() {
     }
 }
 
-function handleTouchStart() {
+function handleTouchStart(e) {
+    e.preventDefault();
     if (running)
         timerStop();
     else {
