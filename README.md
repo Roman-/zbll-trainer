@@ -1,6 +1,8 @@
 # ZBLL trainer
 ## https://bestsiteever.ru/zbll/
 
+![zbll trainer demo](images/demo.gif)
+
 The purpose of this project and its details are described on speedsolving forum in [this post](https://www.speedsolving.com/forum/threads/zbll-trainer.63572/).  
 
 How it works
