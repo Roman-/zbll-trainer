@@ -1,5 +1,5 @@
 # ZBLL trainer
-## https://bestsiteever.ru/zbll/
+## https://bestsiteever.net/zbll/
 
 ![zbll trainer demo](images/demo.gif)
 
